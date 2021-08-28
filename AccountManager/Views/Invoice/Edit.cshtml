@@ -1,0 +1,106 @@
+@model AccountManager.Models.Invoice
+
+@{
+    ViewBag.Title = "Edit";
+    if (Ajax.IsThisAjaxRequest())
+    {
+        Layout = null;
+    }
+}
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+@Html.StarkAjaxFormSubmiter("frmInvoice", "tbInvoice", true, "Action Successfully Executed")
+
+ 
+@{
+    if (!Ajax.IsThisAjaxRequest())
+    {
+        <section class="content-header">
+            <h1>
+                @ViewBag.Title
+                <small>@ViewBag.Title</small>
+            </h1>
+        </section>
+    }
+}
+
+<script type="text/javascript">
+        $(function () { 
+            $('select').searchableOptionList({
+                maxHeight: '250px'
+            });
+        });
+</script>
+
+@using (Html.BeginForm("Edit", "Invoice", FormMethod.Post, new { enctype = "multipart/form-data",id = "frmInvoice"  }))
+{
+    @Html.AntiForgeryToken()
+
+        <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Edit Invoice</h3>
+                    </div> 
+                    <!-- form start -->
+  
+                    <div role="form">
+                        <div class="box-body">
+                              
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BillDate, new { @class = "" }) 
+                                @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "" } })
+                                <script> $(function () { $("#BillDate").datepicker(); }); </script> 
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DueDate, new { @class = "" }) 
+                                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "" } })
+                                <script> $(function () { $("#DueDate").datepicker(); }); </script> 
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Status, new { @class = "" })
+                                @Html.DropDownList("Status"," -Select- ") 
+                                @Html.StarkDropDownAjaxLink("/PaymentStatus/Create", "AddMore","")
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LastEmailed, new { @class = "" })
+                                @Html.EditorFor(model => model.LastEmailed)  
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OtherInvoiceCode, new { @class = "" })
+                                @Html.EditorFor(model => model.OtherInvoiceCode)  
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ClientId, new { @class = "" })
+                                @Html.DropDownList("ClientId"," -Select- ") 
+                                @Html.StarkDropDownAjaxLink("/User/Create", "AddMore","")
+                            </div>
+                            <div class="form-group">
+                                @Html.Hidden("CreatedBy", Env.GetUserInfo("userid")) 
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OfficeId, new { @class = "" })
+                                @Html.DropDownList("OfficeId"," -Select- ") 
+                                @Html.StarkDropDownAjaxLink("/CompanyOffice/Create", "AddMore","")
+                            </div>
+
+
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            @Html.StarkInputButtion("Save","submit","btn btn-primary","") 
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+
+

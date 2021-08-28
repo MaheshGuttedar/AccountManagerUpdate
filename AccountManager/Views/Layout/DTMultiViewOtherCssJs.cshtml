@@ -1,0 +1,66 @@
+﻿<script src="~/Content/DataTable/new/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTable/new/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script>
+        $(function () {
+
+            $("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+            $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+
+            $("#dialog").dialog({
+                autoOpen: false,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+            });
+            $("#opener").click(function () {
+                $("#dialog").dialog("open");
+            });
+
+        });
+</script>
+
+<style>
+    table {
+        width: 100% !important;
+    }
+
+    .ui-tabs-vertical {
+        width: 100%;
+    }
+
+        .ui-tabs-vertical .ui-tabs-nav {
+            padding: .2em .1em .2em .2em;
+            float: left;
+            width: 19%; 
+        }
+
+            .ui-tabs-vertical .ui-tabs-nav li {
+                clear: left;
+                width: 100%;
+                border-bottom-width: 1px !important;
+                border-right-width: 0 !important;
+                margin: 0 -1px .2em 0;
+            }
+
+                .ui-tabs-vertical .ui-tabs-nav li a {
+                    display: block;
+                }
+
+                .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+                    padding-bottom: 0;
+                    padding-right: .1em;
+                    border-right-width: 1px;
+                }
+
+        .ui-tabs-vertical .ui-tabs-panel {
+            padding: 1em;
+            float: right;
+            width: 80%;
+        }
+</style>

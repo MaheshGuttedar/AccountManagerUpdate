@@ -1,0 +1,61 @@
+﻿<!-- Bootstrap 3.3.2 -->
+<link href="~/Content/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- FontAwesome 4.3.0 -->
+<link href="~/Content/theme/offline/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/theme/offline/css/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/theme/offline/ionicons.min.css" rel="stylesheet" />
+<!-- Theme style -->
+<link href="~/Content/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+     folder instead of downloading all of them to reduce the load. -->
+<link href="~/Content/theme/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<!-- iCheck -->
+@*<link href="~/Content/theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+    
+    <!-- jvectormap -->
+    <link href="~/Content/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <!-- Date Picker -->
+    <link href="~/Content/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />*@
+
+<!-- jQuery 2.1.3 -->
+<script src="~/Content/theme/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+<!-- jQuery UI 1.11.2 -->
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- Daterange picker -->
+@*<link href="~/Content/theme/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />*@
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+ 
+<link href="~/Content/notifire/noti.css" rel="stylesheet" />
+<script src="~/Content/notifire/notij.js"></script>
+<script>
+        $(document).ready(function () {
+            @{
+                if (TempData["success"]!=null)
+                {
+                     @:$.sticky("<br/> @TempData["success"]", { stickyClass: 'success' });
+                }
+            }
+            function StarkL() {  $("#starkloader").show(); }
+        });
+         jQuery.ajaxSetup({
+            beforeSend: function () {
+                $('#starkloader').show();
+            },
+            complete: function () {
+                $('#starkloader').hide();
+            },
+            success: function () { }
+        });
+</script>
+<link href="~/Content/NiceDropdown/searchableOptionList.css" rel="stylesheet" />
+<link href="~/Content/NiceDropdown/sol.css" rel="stylesheet" />
+<script src="~/Content/NiceDropdown/sol.js"></script>
+
+<link href="~/Content/tabs/JqueryUi.css" rel="stylesheet" />

@@ -1,0 +1,97 @@
+@model AccountManager.Models.InvoiceItem
+
+@{
+    ViewBag.Title = "Create";
+    if (Ajax.IsThisAjaxRequest())
+    {
+        Layout = null;
+    }
+}
+ 
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+@Html.StarkAjaxFormSubmiter("frmInvoiceItem", "tbInvoiceItem", true, "Action Successfully Executed")
+ 
+@{
+    if (!Ajax.IsThisAjaxRequest())
+    {
+        <section class="content-header">
+            <h1>
+                @ViewBag.Title
+                <small>@ViewBag.Title</small>
+            </h1>
+        </section>
+    }
+}
+<script type="text/javascript">
+        $(function () { 
+            $('select').searchableOptionList({
+                maxHeight: '250px'
+            });
+        });
+</script>
+@using (Html.BeginForm("Create", "InvoiceItem", FormMethod.Post, new { enctype = "multipart/form-data",id = "frmInvoiceItem"  }))
+{
+    @Html.AntiForgeryToken()
+          <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-solid box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Fill InvoiceItem Form</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div role="form">
+                        <div class="box-body">
+                              
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.InvoiceId, new { @class = "" })
+                                @Html.DropDownList("InvoiceId"," -Select- ") 
+                                @Html.StarkDropDownAjaxLink("/Invoice/Create", "AddMore","")
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, new { @class = "" })
+                                @Html.EditorFor(model => model.Description)  
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, new { @class = "" })
+                                @Html.EditorFor(model => model.Title)  
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Quantity, new { @class = "" })
+                                @Html.EditorFor(model => model.Quantity)  
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UnitPrice, new { @class = "" })
+                                @Html.EditorFor(model => model.UnitPrice)  
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UnitName, new { @class = "" })
+                                @Html.DropDownList("UnitName"," -Select- ") 
+                                @Html.StarkDropDownAjaxLink("/QuantityUnit/Create", "AddMore","")
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Total, new { @class = "" })
+                                @Html.EditorFor(model => model.Total)  
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="box-footer">
+                            @Html.StarkInputButtion("Create New","submit","btn btn-primary","") 
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+
