@@ -13,6 +13,7 @@ namespace AccountManager.Models
         public string Email { get; set; }
         public bool IsActive { get; set; }
         public int CompanyId { get; set; }
+        public int AccountId { get; set; }
         //public string Address { get; set; }
         //public string Cell { get; set; }
         //public string RegNo { get; set; }
