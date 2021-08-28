@@ -15,13 +15,15 @@ namespace AccountManager.Controllers
 
             using (SIContext db = new SIContext())
             {
-
-                home.Menu = db.Menus.Count();
-                home.Role = db.Roles.Count();
-                home.User = db.Users.Count();
-                home.Company = db.Companys.Count();
+                 
+                 
+                home.Asset = Convert.ToDouble(db.Transactions.Select(t => t.DebitAmount ?? 0).Sum().ToString());
+                home.AccountHoders = db.AccountHolders.Count();
+                //home.Role = db.Roles.Count();
+                //home.User = db.Users.Count();
+                //home.Company = db.Companys.Count();
                 home.Invoice = db.Invoices.Count();
-                home.Product = db.Products.Count();
+                //home.Product = db.Products.Count();
                 home.Transaction = db.Transactions.Count();
 
             }

@@ -31,6 +31,7 @@ namespace AccountManager.Controllers
             Convert.ToString(c.OfficeType_OfficeTypeId.Name), 
             Convert.ToString(c.Company_CompanyId.Name), 
              };
+            
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
         // GET: /CompanyOffice/ModelBindIndex

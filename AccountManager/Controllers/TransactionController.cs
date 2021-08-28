@@ -23,17 +23,16 @@ namespace AccountManager.Controllers
         public ActionResult GetGrid()
         {
             var tak = db.Transactions.ToArray();
-             
-            var result = from c in tak select new string[] { c.Id.ToString(), Convert.ToString(c.Id), 
-            Convert.ToString(c.Title), 
-            Convert.ToString(c.DateAdded), 
+            var result = from c in tak select new string[] { c.Id.ToString(), c.Id.ToString(),
+            Convert.ToString(c.Title),
+              Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
             Convert.ToString(c.AddedBy), 
-            Convert.ToString(c.CompanyOffice_OfficeId.Title), 
+            //Convert.ToString(c.CompanyOffice_OfficeId.Title), 
             Convert.ToString(c.DebitAccount!=null?c.LedgerAccountType_DebitAccount.Title:""), 
             Convert.ToString(c.DebitAmount!=null?c.DebitAmount:0), 
             Convert.ToString(c.CreditAccount!=null?c.LedgerAccountType_CreditAccount.Title:""), 
             Convert.ToString(c.CreditAmount!=null?c.CreditAmount:0), 
-            Convert.ToString(c.TransactionDate), 
+         
              };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
@@ -78,9 +77,9 @@ ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
             try
             {
                 if (ModelState.IsValid)
-                { 
-                    
+                {
 
+                    ObjTransaction.CreditAccount = ObjTransaction.DebitAccount;
                     db.Transactions.Add(ObjTransaction);
                     db.SaveChanges();
 
