@@ -15,27 +15,33 @@ namespace AccountManager.Maping
              
             HasKey(o => o.Id);
             Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(o => o.FirstName).HasMaxLength(100);
-            Property(o => o.LastName).HasMaxLength(100);
-            Property(o => o.CompanyId);
-            Property(o => o.Email).HasMaxLength(500);
-            //Property(o => o.Address).HasMaxLength(500);
-            //Property(o => o.Cell).HasMaxLength(50);
-            //Property(o => o.RegNo).HasMaxLength(100);
-            //Property(o => o.Model).HasMaxLength(150);
-            //Property(o => o.Mobile).HasMaxLength(10);
-            //Property(o => o.Make).HasMaxLength(200);
-            //Property(o => o.GuarantorName).HasMaxLength(150);
-            //Property(o => o.GuarantorAddress).HasMaxLength(500);
-            //Property(o => o.GuarantorMobile).HasMaxLength(10);
-            //Property(o => o.ChassisNo).HasMaxLength(200);
-            //Property(o => o.EngineNo).HasMaxLength(200);
-            //Property(o => o.InsuranceUpto).HasMaxLength(15);
-            //Property(o => o.DueDate).HasMaxLength(15);
+            Property(o => o.Name).HasMaxLength(150);
+            Property(o => o.Address).HasMaxLength(1050);
+            Property(o => o.Mobile).HasMaxLength(13);
+            Property(o => o.GuarantorName).HasMaxLength(150);
+            Property(o => o.GuarantorAddress).HasMaxLength(1050);
+            Property(o => o.GuarantorMobile).HasMaxLength(13);          
+            Property(o => o.Email).HasMaxLength(500);            
+            Property(o => o.Cell).HasMaxLength(100);
+            Property(o => o.RegNo).HasMaxLength(100);
+            Property(o => o.Model).HasMaxLength(100);            
+            Property(o => o.Make).HasMaxLength(100);      
+            Property(o => o.ChassisNo).HasMaxLength(100);
+            Property(o => o.EngineNo).HasMaxLength(100);
+            Property(o => o.InsuranceUpto).HasMaxLength(10);
+            Property(o => o.DueDate).HasMaxLength(10);// ends 
+            Property(o => o.Email).HasMaxLength(200);
             Property(o => o.IsActive);
-            //Property(o => o.CreatedDate);
-            //Property(o => o.CreatedBy);
-            //Property(o => o.LedAccountId);
+            Property(o => o.CompanyId);
+            Property(o => o.AccountId);
+            Property(o => o.CreatedDate);
+            Property(o => o.CreatedBy);
+            Property(o => o.YearId);
+            Property(o => o.TotalInstallments);
+            Property(o => o.LoanAdvance);
+            Property(o => o.InstallmentAmount);
+            Property(o => o.Status);
+            Property(o => o.AccountNoFromRegister);
             ToTable("AccountHolders");
 
 

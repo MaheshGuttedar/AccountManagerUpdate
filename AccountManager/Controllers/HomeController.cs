@@ -17,7 +17,7 @@ namespace AccountManager.Controllers
             {
                  
                  
-                home.Asset = Convert.ToDouble(db.Transactions.Select(t => t.DebitAmount ?? 0).Sum().ToString());
+                home.Asset =db.Transactions.Select(t => t.DebitAmount).Sum();
                 home.AccountHoders = db.AccountHolders.Count();
                 //home.Role = db.Roles.Count();
                 //home.User = db.Users.Count();

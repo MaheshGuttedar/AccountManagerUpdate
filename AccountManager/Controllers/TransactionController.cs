@@ -29,11 +29,9 @@ namespace AccountManager.Controllers
             Convert.ToString(c.AddedBy), 
             //Convert.ToString(c.CompanyOffice_OfficeId.Title), 
             Convert.ToString(c.DebitAccount!=null?c.LedgerAccountType_DebitAccount.Title:""), 
-            Convert.ToString(c.DebitAmount!=null?c.DebitAmount:0), 
-            Convert.ToString(c.CreditAccount!=null?c.LedgerAccountType_CreditAccount.Title:""), 
-            Convert.ToString(c.CreditAmount!=null?c.CreditAmount:0), 
-         
-             };
+            Convert.ToString(c.DebitAmount!=null?c.DebitAmount:0),            
+            Convert.ToString(c.CreditAmount!=null?c.CreditAmount:0),          
+            };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
         // GET: /Transaction/ModelBindIndex
@@ -59,9 +57,8 @@ namespace AccountManager.Controllers
         public ActionResult Create()
         {
              ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title");
-ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
-ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
-
+             ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
+             ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
              return View();
         }
 
@@ -76,10 +73,9 @@ ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
             System.Text.StringBuilder sb = new System.Text.StringBuilder(); 
             try
             {
+                ObjTransaction.CreditAccount = ObjTransaction.DebitAccount;
                 if (ModelState.IsValid)
                 {
-
-                    ObjTransaction.CreditAccount = ObjTransaction.DebitAccount;
                     db.Transactions.Add(ObjTransaction);
                     db.SaveChanges();
 
@@ -118,8 +114,8 @@ ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
                 return HttpNotFound();
             }
             ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjTransaction.OfficeId);
-ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.DebitAccount);
-ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.CreditAccount);
+            ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.DebitAccount);
+            ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.CreditAccount);
 
             return View(ObjTransaction);
         }
@@ -214,7 +210,7 @@ ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", Obj
             {
                 ViewBag.IsWorking = id;
                 ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjTransaction.OfficeId);
-ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.DebitAccount);
+                ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.DebitAccount);
 ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.CreditAccount);
 
             }

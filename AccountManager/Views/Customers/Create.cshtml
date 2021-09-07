@@ -46,22 +46,22 @@
                     <div role="form">
                         <div class="box-body">
                             @*<div class="form-group">
-                                @Html.LabelFor(model => model.CompanyId, new { @class = "" })
-                                @Html.DropDownList("CompanyId", " -Select- ")
-                                @Html.StarkDropDownAjaxLink("/Company/Create", "AddMore", "")
-                            </div>*@
-                             <div class="form-group">
+                                    @Html.LabelFor(model => model.CompanyId, new { @class = "" })
+                                    @Html.DropDownList("CompanyId", " -Select- ")
+                                    @Html.StarkDropDownAjaxLink("/Company/Create", "AddMore", "")
+                                </div>*@
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.AccountId, new { @class = "" })
                                 @Html.DropDownList("AccountId", " -Select- ")
                                 @Html.StarkDropDownAjaxLink("/LedgerAccountType/Create", "AddMore", "")
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.FirstName, new { @class = "" })
-                                @Html.EditorFor(model => model.FirstName)
+                                @Html.LabelFor(model => model.Name, new { @class = "" })
+                                @Html.EditorFor(model => model.Name)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.LastName, new { @class = "" })
-                                @Html.EditorFor(model => model.LastName)
+                                @Html.LabelFor(model => model.Name, new { @class = "" })
+                                @Html.EditorFor(model => model.Name)
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.IsActive, new { @class = "" })
@@ -85,7 +85,25 @@
             </div>
         </div>
     </section>
-}
+
+
+    <div class="col-md-6">
+        <!-- Form Element sizes -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Different Height</h3>
+            </div>
+            <div class="card-body">
+                <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
+                <br>
+                <input class="form-control" type="text" placeholder="Default input">
+                <br>
+                <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+            </div>
+            <!-- /.card-body -->
+        </div>
+        </div>
+        }
 
 
 

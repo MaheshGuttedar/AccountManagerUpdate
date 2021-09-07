@@ -27,11 +27,11 @@ namespace AccountManager.Controllers
             var result = from c in tak
                          select new string[] { c.Id.ToString(),
             Convert.ToString(c.Id),               
-            Convert.ToString(1),//c.CompanyId
-             Convert.ToString(c.AccountId),//c.CompanyId
-            Convert.ToString(c.FirstName),
-            Convert.ToString(c.LastName),
-            Convert.ToString(c.IsActive),
+           // Convert.ToString(1),//c.CompanyId
+           //  Convert.ToString(c.AccountId),//c.CompanyId
+            Convert.ToString(c.Name),
+            Convert.ToString(c.Name),
+           // Convert.ToString(c.IsActive),
             Convert.ToString(c.Email),
              };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);

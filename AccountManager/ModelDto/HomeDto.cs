@@ -15,7 +15,7 @@ namespace AccountManager.ModelDto
         public int Transaction { get; set; }
         public int Product { get; set; }
 
-        public double Asset { get; set; }
+        public Nullable<decimal> Asset { get; set; }
         public int AccountHoders { get; set; }
 
         

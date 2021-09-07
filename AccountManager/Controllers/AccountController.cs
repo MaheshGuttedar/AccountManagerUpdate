@@ -32,26 +32,42 @@ namespace AccountManager.Controllers
         {
             string email = frmCollection["email"].ToString();
             string password = frmCollection["password"].ToString();
-            var login = db.Users.FirstOrDefault(i => i.Username == email && i.Password == password);
-            if (login != null)
+            if ((email == "" || email == null) && (password == null  || password == ""))
             {
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, login.Username.ToString())); // store username of user
-                claims.Add(new Claim(ClaimTypes.Role, login.RoleUser_UserIds.FirstOrDefault().RoleId.ToString()));
-                claims.Add(new Claim(ClaimTypes.Sid, login.Id.ToString())); // store id of user
-
-                var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-                var authenticationManager = Request.GetOwinContext().Authentication;
-                authenticationManager.SignIn(identity);
-
-                var claimsPrincipal = new ClaimsPrincipal(identity);
-                Thread.CurrentPrincipal = claimsPrincipal;
-
-                return Redirect("~/Home/Index");
+                ViewBag.Msg = "Enter UserName & Password";
             }
+            else if (email == null || email == "")
+            {
+                ViewBag.Msg = "Enter UserName";
+            }
+            else if (password == null || password == "")
+            {
+                ViewBag.Msg = "Enter Password";
+            }
+            
             else
             {
-                ViewBag.Msg = "!Invalid UserName and Password";
+                var login = db.Users.FirstOrDefault(i => i.Username == email && i.Password == password);
+                if (login != null)
+                {
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Name, login.Username.ToString())); // store username of user
+                    claims.Add(new Claim(ClaimTypes.Role, login.RoleUser_UserIds.FirstOrDefault().RoleId.ToString()));
+                    claims.Add(new Claim(ClaimTypes.Sid, login.Id.ToString())); // store id of user
+
+                    var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                    var authenticationManager = Request.GetOwinContext().Authentication;
+                    authenticationManager.SignIn(identity);
+
+                    var claimsPrincipal = new ClaimsPrincipal(identity);
+                    Thread.CurrentPrincipal = claimsPrincipal;
+
+                    return Redirect("~/Home/Index");
+                }
+                else
+                {
+                    ViewBag.Msg = "Invalid UserName or Password";
+                }
             }
             return View();
         }
