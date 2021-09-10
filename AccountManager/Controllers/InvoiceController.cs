@@ -32,7 +32,7 @@ namespace AccountManager.Controllers
             Convert.ToString(c.OtherInvoiceCode), 
             Convert.ToString(c.User_ClientId.Username), 
             Convert.ToString(c.CreatedBy), 
-            Convert.ToString(c.CompanyOffice_OfficeId.Title), 
+            Convert.ToString(1), 
              };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }

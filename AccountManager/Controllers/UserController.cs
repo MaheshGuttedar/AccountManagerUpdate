@@ -281,7 +281,7 @@ namespace AccountManager.Controllers
                 Convert.ToString(c.OtherInvoiceCode),
                 Convert.ToString(c.CreatedBy),
                 Convert.ToString(c.ClientId),
-                Convert.ToString(c.PaymentStatus_Status.Title),Convert.ToString(c.CompanyOffice_OfficeId.Title), };
+                Convert.ToString(c.PaymentStatus_Status.Title),Convert.ToString(1), };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
 

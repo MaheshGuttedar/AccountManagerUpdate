@@ -23,7 +23,7 @@ namespace AccountManager.Models
         public int InstallmentNo { get; set; }
         [DisplayName("Hire Charge")]
         [Required(ErrorMessage = "Enter HireCharge")]
-        public string HireCharge { get; set; }
+        public decimal HireCharge { get; set; }
         [DisplayName("Debit Amount")]
         [Required(ErrorMessage = "Enter Debit Amount")]
         public Nullable<Decimal> DebitAmount { get; set; }
@@ -32,7 +32,7 @@ namespace AccountManager.Models
         public Nullable<Decimal> CreditAmount { get; set; }
         [DisplayName("Balance Amount ")]
         [Required(ErrorMessage = "Enter Balance Amt")]
-        public string BalanceAmount { get; set; }
+        public decimal BalanceAmount { get; set; }
         [DisplayName("Account Holders")]
         [Required(ErrorMessage = "Select Account Holder")]
         public int AccountHolderId { get; set; }
@@ -46,7 +46,7 @@ namespace AccountManager.Models
 
 
 
-        public virtual ICollection<InvoiceTransaction> InvoiceTransaction_TransactionIds { get; set; }   
+       public virtual ICollection<InvoiceTransaction> InvoiceTransaction_TransactionIds { get; set; }   
         public string Status { get; set; }
         public bool IsActive { get; set; }
         public int? PaymentStatusId { get; set; }

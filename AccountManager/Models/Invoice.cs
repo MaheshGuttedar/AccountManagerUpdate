@@ -35,7 +35,7 @@ namespace AccountManager.Models
         [Required]
         [DisplayName("Office")] 
         public int? OfficeId { get; set; }
-        public virtual CompanyOffice CompanyOffice_OfficeId { get; set; }
+      //  public virtual CompanyOffice CompanyOffice_OfficeId { get; set; }
         public virtual ICollection<InvoiceTransaction> InvoiceTransaction_InvoiceIds { get; set; }
         public virtual ICollection<InvoiceItem> InvoiceItem_InvoiceIds { get; set; }
 

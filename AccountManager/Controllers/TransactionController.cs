@@ -33,8 +33,10 @@ namespace AccountManager.Controllers
             Convert.ToString(c.Title),
               Convert.ToString(c.HireCharge),
                Convert.ToString(c.DebitAmount),
+                Convert.ToString(c.BalanceAmount-c.CreditAmount),
                 Convert.ToString(c.CreditAmount),
-                 Convert.ToString(c.BalanceAmount),
+               
+                    Convert.ToString(c.BalanceAmount),
                    Convert.ToString(c.PaymentStatusId) ==null ? "Generate Invoice" :"Paid"
                   
 

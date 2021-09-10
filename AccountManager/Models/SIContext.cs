@@ -57,7 +57,7 @@ namespace AccountManager.Models
 			modelBuilder.Configurations.Add(new AccountManager.Maping.PaymentStatusMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.InvoiceItemMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.QuantityUnitMap());
-			modelBuilder.Configurations.Add(new AccountManager.Maping.LedgerAccountTypeMap());
+			//modelBuilder.Configurations.Add(new AccountManager.Maping.LedgerAccountTypeMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.InvoiceTransactionMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.TransactionMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.AccountHoldersMap());
