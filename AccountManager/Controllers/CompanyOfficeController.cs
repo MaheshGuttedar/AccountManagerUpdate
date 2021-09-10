@@ -268,7 +268,8 @@ ViewBag.CompanyId = new SelectList(db.Companys, "Id", "Name", ObjCompanyOffice.C
                 Convert.ToString(c.CreditAmount),
                 Convert.ToString(c.TransactionDate),
                 Convert.ToString(c.DebitAmount),
-                Convert.ToString(c.LedgerAccountType_DebitAccount.Title),Convert.ToString(c.LedgerAccountType_CreditAccount.Title),Convert.ToString(c.OfficeId),
+                //Convert.ToString(c.LedgerAccountType_DebitAccount.Title),
+                Convert.ToString(c.OfficeId),
                  };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }

@@ -22,15 +22,24 @@ namespace AccountManager.Controllers
         // GET Transaction/GetGrid
         public ActionResult GetGrid()
         {
+            int srlno = 1;
             var tak = db.Transactions.ToArray();
-            var result = from c in tak select new string[] { c.Id.ToString(), c.Id.ToString(),
+            var result = from c in tak select new string[] { 
+                c.Id.ToString(),
+                 Convert.ToString(srlno++),
+                 Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
+                  Convert.ToString(c.InstallmentNo),
             Convert.ToString(c.Title),
-              Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
-            Convert.ToString(c.AddedBy), 
-            //Convert.ToString(c.CompanyOffice_OfficeId.Title), 
-            Convert.ToString(c.DebitAccount!=null?c.LedgerAccountType_DebitAccount.Title:""), 
-            Convert.ToString(c.DebitAmount!=null?c.DebitAmount:0),            
-            Convert.ToString(c.CreditAmount!=null?c.CreditAmount:0),          
+              Convert.ToString(c.HireCharge),
+               Convert.ToString(c.DebitAmount),
+                Convert.ToString(c.CreditAmount),
+                 Convert.ToString(c.BalanceAmount),
+                  Convert.ToString(c.PaymentStatusId)
+                  
+           // Convert.ToString(c.AddedBy),
+           //   Convert.ToString(c.DateAdded),
+
+
             };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
@@ -56,10 +65,9 @@ namespace AccountManager.Controllers
         // GET: /Transaction/Create
         public ActionResult Create()
         {
-             ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title");
-             ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
-             ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title");
-             return View();
+            ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name");
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");
+            return View();
         }
 
         // POST: /Transaction/Create
@@ -73,7 +81,9 @@ namespace AccountManager.Controllers
             System.Text.StringBuilder sb = new System.Text.StringBuilder(); 
             try
             {
-                ObjTransaction.CreditAccount = ObjTransaction.DebitAccount;
+                ObjTransaction.DateAdded = DateTime.Now;
+                ObjTransaction.AddedBy = int.Parse(Env.GetUserInfo("userid"));
+                ObjTransaction.OfficeId = 1;
                 if (ModelState.IsValid)
                 {
                     db.Transactions.Add(ObjTransaction);
@@ -113,9 +123,8 @@ namespace AccountManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjTransaction.OfficeId);
-            ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.DebitAccount);
-            ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.CreditAccount);
+            ViewBag.YearId = new SelectList(db.CompanyOffices, "Id", "StartDate", ObjTransaction.YearId);
+            ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjTransaction.AccountHolderId);
 
             return View(ObjTransaction);
         }
@@ -209,9 +218,8 @@ namespace AccountManager.Controllers
             if (id > 0)
             {
                 ViewBag.IsWorking = id;
-                ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjTransaction.OfficeId);
-                ViewBag.DebitAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.DebitAccount);
-ViewBag.CreditAccount = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjTransaction.CreditAccount);
+                ViewBag.YearId = new SelectList(db.CompanyOffices, "Id", "StartDate", ObjTransaction.YearId);
+                ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjTransaction.AccountHolderId);
 
             }
             

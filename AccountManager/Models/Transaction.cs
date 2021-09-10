@@ -9,41 +9,58 @@ namespace AccountManager.Models
 {
     public class Transaction
     {
-        [DisplayName("S.No")] 
-        public int Id { get; set; }
-        [Required]
-        [StringLength(50)] 
-        [DisplayName("Title")] 
-        public string Title { get; set; }
-        [Required]
-        [DisplayName("Date Added")] 
-        public DateTime DateAdded { get; set; }
-        [Required]
-        [DisplayName("Added By")] 
-        public int AddedBy { get; set; }
-        [Required]
-        [DisplayName("Office")] 
-        public int? OfficeId { get; set; }
-        public virtual CompanyOffice CompanyOffice_OfficeId { get; set; }
-       
-        [DisplayName("Debit Account")] 
-        public int? DebitAccount { get; set; }
-        public virtual LedgerAccountType LedgerAccountType_DebitAccount { get; set; }
-         
-        [DisplayName("Debit Amount")] 
-        public Nullable<Decimal> DebitAmount { get; set; }
         
-        [DisplayName("Credit Account")] 
-        public int? CreditAccount { get; set; }
-        public virtual LedgerAccountType LedgerAccountType_CreditAccount { get; set; }
-         
-        [DisplayName("Credit Amount")] 
-        public Nullable<Decimal> CreditAmount { get; set; }
-
-        [Required]
-        [DisplayName("Transaction Date")] 
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Select Date")]
+        [DisplayName("Date")]       
         public DateTime TransactionDate { get; set; }
-        public virtual ICollection<InvoiceTransaction> InvoiceTransaction_TransactionIds { get; set; }
+        [StringLength(50)] 
+        [DisplayName("Particulars")]
+        [Required(ErrorMessage = "Enter Particulars")]
+        public string Title { get; set; }
+        [DisplayName("No of Installment")]
+        [Required(ErrorMessage = "Enter Installment No")]
+        public int InstallmentNo { get; set; }
+        [DisplayName("Hire Charge")]
+        [Required(ErrorMessage = "Enter HireCharge")]
+        public string HireCharge { get; set; }
+        [DisplayName("Debit Amount")]
+        [Required(ErrorMessage = "Enter Debit Amount")]
+        public Nullable<Decimal> DebitAmount { get; set; }
+        [DisplayName("Credit Amount")]
+        [Required(ErrorMessage = "Enter Credit Amount")]
+        public Nullable<Decimal> CreditAmount { get; set; }
+        [DisplayName("Balance Amount ")]
+        [Required(ErrorMessage = "Enter Balance Amt")]
+        public string BalanceAmount { get; set; }
+        [DisplayName("Account Holders")]
+        [Required(ErrorMessage = "Select Account Holder")]
+        public int AccountHolderId { get; set; }
+        [DisplayName("Year ")]
+        [Required(ErrorMessage = "Select Year")]
+        public int YearId { get; set; }
+
+
+
+
+
+
+
+        public virtual ICollection<InvoiceTransaction> InvoiceTransaction_TransactionIds { get; set; }   
+        public string Status { get; set; }
+        public bool IsActive { get; set; }
+        public int? PaymentStatusId { get; set; }
+
+
+        public DateTime DateAdded { get; set; }
+        public int AddedBy { get; set; }
+        public int? OfficeId { get; set; }
+        public virtual CompanyOffice CompanyOffice_OfficeId { get; set; }       
+        public int? DebitAccount { get; set; }
+        //public virtual LedgerAccountType LedgerAccountType_DebitAccount { get; set; }
+
+
+
 
     }
 }

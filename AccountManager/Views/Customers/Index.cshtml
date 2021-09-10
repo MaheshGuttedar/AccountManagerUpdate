@@ -59,14 +59,19 @@
                                 <thead>
                                     <tr>
                                         <th>Actions</th>
-                                        <th> Id  </th>
-                                        <th style="display:none"> Company  </th>
-                                        <th> First Name  </th>
-                                        <th> Last Name  </th>
-                                        <th style="display:none"> Is Active  </th>
-                                        <th> Email  </th>
+                                        <th> Sl No  </th>
 
+                                        <th>  Name  </th>
+                                        <th>  Mobile  </th>
+                                        <th>  Guarantor Name  </th>
+                                        <th>  Guarantor Mobile  </th>
 
+                                        <th> Loan Advance  </th>
+                                        <th> Install mentAmount  </th>
+                                        <th> Installments </th>
+                                        <th> Make   </th>
+                                        <th> YearId   </th>
+                                        <th> Status  </th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -80,21 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box box-solid box-primary">
-
-                <div class="box-body">
-                    <!-- Split button -->
-                    <div class="margin">
-                        <div class="btn-group">
-                            @*@Ajax.ModalDialogActionLink("Create Quick", "Create", "Create ", "btn btn-dropbox")*@
-                        </div>
-                        <div class="btn-group">
-                            <a href="~/Customers/Create" class="btn btn-dropbox">Create </a>
-                        </div>
-                    </div>
-                    <!-- flat split buttons -->
-                </div><!-- /.box-body -->
-            </div>
+          
         </div>
     </div>
 </section>
@@ -115,11 +106,11 @@
             "dom": 'lBfrtip',
             "sAjaxSource": "@Url.Content("~/Customers/GetGrid")",
             "buttons": [
-                 { extend: 'copyHtml5', exportOptions: { columns: ':visible' } }
+               /*  { extend: 'copyHtml5', exportOptions: { columns: ':visible' } }*/
                 ,{ extend: 'excelHtml5', exportOptions: { columns: ':visible' } }
-                ,{ extend: 'csvHtml5', exportOptions: { columns: ':visible' } }
+               /* ,{ extend: 'csvHtml5', exportOptions: { columns: ':visible' } }*/
                 ,{ extend: 'pdfHtml5', exportOptions: { columns: ':visible' } }
-                ,{ extend: 'print', exportOptions: { columns: ':visible' } }
+             /*   ,{ extend: 'print', exportOptions: { columns: ':visible' } }*/
                 ,'colvis'
             ], columnDefs: [{   visible: false }],
             "pageLength": 10,
@@ -133,7 +124,6 @@
                     buttons += '<ul class="dropdown-menu pull-left" role="menu">';
                     buttons += '<li><a href="' + ControlerNameCustomers + "/MultiViewIndex/" + row[0] + '"><i class="fa fa-edit"></i>Full Edit</a></li>';
                     buttons += '<li class="divider"></li>';
-                    buttons += '<li><a href="' + ControlerNameCustomers + "/Edit/" + row[0] + '" data-ajax-update="#SkEdit" data-ajax-success="openModalDialog(\'SkEdit\', \'Edit\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkEdit\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkEdit\')" data-ajax="true"><i class="fa fa-pencil-square"></i>Quick Edit</a></li>';
                     buttons += '<li><a href="' + ControlerNameCustomers + "/Details/" + row[0] + '" data-ajax-update="#SkDetails" data-ajax-success="openModalDialog(\'SkDetails\', \'Details\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDetails\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDetails\')" data-ajax="true"><i class="fa fa-info-circle"></i>Quick Details</a></li>';
                     buttons += '<li><a href="' + ControlerNameCustomers + "/Delete/" + row[0] + '" data-ajax-update="#SkDelete" data-ajax-success="openModalDialog(\'SkDelete\', \'Delete\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDelete\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDelete\')" data-ajax="true"><i class="fa fa-trash-o"></i> Delete</a></a></li>';
 
@@ -143,14 +133,18 @@
                                  }
 
         } ,{}
-,{    "mRender": function (oObj, type, row) {
-        return "<a href='/Customer/' target='_blank' class='btn btn-tiny'  /> " + oObj + " </a>";
-     }
+                    , {
+     //                   "mRender": function (oObj, type, row) {
+     //   return "<a href='/Customer/' target='_blank' class='btn btn-tiny'  /> " + oObj + " </a>";
+     //}
 },{}
 ,{}
 ,{}
 ,{}
-
+                    , {}
+                    , {}
+                    , {}, {}
+                    , {}
 
         ]
 

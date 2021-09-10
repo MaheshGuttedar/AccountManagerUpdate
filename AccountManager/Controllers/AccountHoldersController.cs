@@ -46,7 +46,7 @@ namespace AccountManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,IsActive,CompanyId")] AccountHolders accountHolders)
+        public ActionResult Create([Bind(Include = "Id,Name,Address,Mobile,GuarantorName,GuarantorAddress,GuarantorMobile,Cell,RegNo,Model,Make,ChassisNo,EngineNo,InsuranceUpto,DueDate,Email,IsActive,CompanyId,AccountId,YearId,TotalInstallments,LoanAdvance,InstallmentAmount,Status,AccountNoFromRegister,CustomerPhoto,CustomerPhoto")] AccountHolders accountHolders)
         {
             if (ModelState.IsValid)
             {

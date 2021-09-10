@@ -45,47 +45,49 @@
                     <!-- form start -->
                     <div role="form">
                         <div class="box-body">
-
-
+                          
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Title, new { @class = "" })
-                                @Html.EditorFor(model => model.Title)
+                                @Html.LabelFor(model => model.YearId, new { @class = "" })
+                                @Html.DropDownList("YearId", " -Select- ")
                             </div>
                             <div class="form-group">
-                                @Html.Hidden("DateAdded", DateTime.Now)
-                            </div>
-                            <div class="form-group">
-                                @Html.Hidden("AddedBy", Env.GetUserInfo("userid"))
-                            </div>
-                            @Html.Hidden("OfficeId",1)
-                            @*<div class="form-group">
-            @Html.LabelFor(model => model.OfficeId, new { @class = "" })
-            @Html.DropDownList("OfficeId"," -Select- ")
-            @Html.StarkDropDownAjaxLink("/CompanyOffice/Create", "AddMore","")
-        </div>*@
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DebitAccount, new { @class = "" })
-                                @Html.DropDownList("DebitAccount", " -Select- ")
-                                @Html.StarkDropDownAjaxLink("/LedgerAccountType/Create", "AddMore", "")
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DebitAmount, new { @class = "" })
-                                @Html.EditorFor(model => model.DebitAmount)
-                            </div>
-                            @*<div class="form-group">
-                                @Html.LabelFor(model => model.CreditAccount, new { @class = "" })
-                                @Html.DropDownList("CreditAccount", " -Select- ")
-                                @Html.StarkDropDownAjaxLink("/LedgerAccountType/Create", "AddMore", "")
-                            </div>*@
-                           <div class="form-group">
-                                @Html.LabelFor(model => model.CreditAmount, new { @class = "" })
-                                @Html.EditorFor(model => model.CreditAmount)
+                                @Html.LabelFor(model => model.AccountHolderId, new { @class = "" })
+                                @Html.DropDownList("AccountHolderId", " -Select- ")
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.TransactionDate, new { @class = "" })
                                 @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "" } })
                                 <script>$(function () { $("#TransactionDate").datepicker(); });</script>
                             </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.InstallmentNo, new { @class = "" })
+                                @Html.EditorFor(model => model.InstallmentNo)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, new { @class = "" })
+                                @Html.EditorFor(model => model.Title)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HireCharge, new { @class = "" })
+                                @Html.EditorFor(model => model.HireCharge)
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DebitAmount, new { @class = "" })
+                                @Html.EditorFor(model => model.DebitAmount)
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CreditAmount, new { @class = "" })
+                                @Html.EditorFor(model => model.CreditAmount)
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BalanceAmount, new { @class = "" })
+                                @Html.EditorFor(model => model.BalanceAmount)
+                            </div>
+
 
 
 

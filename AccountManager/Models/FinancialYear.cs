@@ -12,11 +12,13 @@ namespace AccountManager.Models
         [DisplayName("S.No")] 
         public int Id { get; set; }
         [Required]
-        [DisplayName("Start Date")] 
-        public DateTime StartDate { get; set; }
+        [DisplayName("Start Year")]
+    
+        public int StartDate { get; set; }
         [Required]
-        [DisplayName("End Date")] 
-        public DateTime EndDate { get; set; }
+        [DisplayName("End Year")]
+  
+        public int EndDate { get; set; }
 
     }
 }

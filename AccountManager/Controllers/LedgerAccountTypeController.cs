@@ -252,7 +252,7 @@ namespace AccountManager.Controllers
         }
          public ActionResult TransactionGetGrid(int id=0)
         {
-            var tak = db.Transactions.Where(i=>i.CreditAccount==id).ToArray();
+            var tak = db.Transactions.ToArray();
              
             var result = from c in tak select new string[] { Convert.ToString(c.Id),Convert.ToString(c.Id),
                 Convert.ToString(c.Title),
@@ -262,13 +262,13 @@ namespace AccountManager.Controllers
                 Convert.ToString(c.TransactionDate),
                 Convert.ToString(c.DebitAmount),
                 Convert.ToString(c.DebitAccount),
-                Convert.ToString(c.CreditAccount),
+               // Convert.ToString(c.CreditAccount),
                 Convert.ToString(c.CompanyOffice_OfficeId.Title), };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
          public ActionResult TransactionGetGrid1(int id=0)
         {
-            var tak = db.Transactions.Where(i=>i.CreditAccount==id).ToArray();
+            var tak = db.Transactions.ToArray();
              
             var result = from c in tak select new string[] { Convert.ToString(c.Id),Convert.ToString(c.Id),
                 Convert.ToString(c.Title),
@@ -278,7 +278,7 @@ namespace AccountManager.Controllers
                 Convert.ToString(c.TransactionDate),
                 Convert.ToString(c.DebitAmount),
                 Convert.ToString(c.DebitAccount),
-                Convert.ToString(c.CreditAccount),
+              //  Convert.ToString(c.CreditAccount),
                 Convert.ToString(c.CompanyOffice_OfficeId.Title), };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }

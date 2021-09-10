@@ -42,6 +42,7 @@ namespace AccountManager.Maping
             Property(o => o.InstallmentAmount);
             Property(o => o.Status);
             Property(o => o.AccountNoFromRegister);
+            Property(o => o.CustomerPhoto);
             ToTable("AccountHolders");
 
 

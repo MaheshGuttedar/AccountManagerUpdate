@@ -22,18 +22,21 @@ namespace AccountManager.Controllers
         // GET Customers/GetGrid
         public ActionResult GetGrid()
         {
+            int slrno = 1;
             var tak = db.AccountHolders.ToArray();
-
-            var result = from c in tak
-                         select new string[] { c.Id.ToString(),
-            Convert.ToString(c.Id),               
-           // Convert.ToString(1),//c.CompanyId
-           //  Convert.ToString(c.AccountId),//c.CompanyId
+            var result = from c in tak  select new string[] {Convert.ToString(c.Id),
+            Convert.ToString(slrno++),             
             Convert.ToString(c.Name),
-            Convert.ToString(c.Name),
-           // Convert.ToString(c.IsActive),
-            Convert.ToString(c.Email),
-             };
+            Convert.ToString(c.Mobile),
+            Convert.ToString(c.GuarantorName),
+             Convert.ToString(c.GuarantorMobile),           
+             Convert.ToString(c.LoanAdvance),
+              Convert.ToString(c.InstallmentAmount),
+                 Convert.ToString(c.TotalInstallments),
+                 Convert.ToString(c.Make),
+                  Convert.ToString(c.YearId),
+                    Convert.ToString(c.Status),
+        };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
         // GET: /Customers/ModelBindIndex
@@ -58,7 +61,9 @@ namespace AccountManager.Controllers
         // GET: /Customers/Create
         public ActionResult Create()
         {
-            ViewBag.AccountId = new SelectList(db.LedgerAccountTypes, "Id", "Title");
+            ViewBag.AccountId = 1;
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");
+            
 
             return View();
         }
@@ -76,8 +81,6 @@ namespace AccountManager.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
-
                     db.AccountHolders.Add(ObjAccountHolders);
                     db.SaveChanges();
 
@@ -115,8 +118,8 @@ namespace AccountManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AccountId = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjAccountHolders.Id);
-
+            ViewBag.AccountId = 1;
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjAccountHolders.Id);
             return View(ObjAccountHolders);
         }
 
@@ -209,7 +212,7 @@ namespace AccountManager.Controllers
             if (id > 0)
             {
                 ViewBag.IsWorking = id;
-                ViewBag.AccountId = new SelectList(db.LedgerAccountTypes, "Id", "Title", ObjAccountHolders.Id);
+                ViewBag.AccountId = 1;
 
             }
 
