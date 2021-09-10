@@ -584,12 +584,8 @@
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\sagomod.png" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\non-image.html" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\styling.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\tutorial1.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\tutorial2.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\tutorial3.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\tutorial4.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\tutorial5.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\index.html" />
+
+ 
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.color.js" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.Jcrop.js" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.Jcrop.min.js" />
@@ -695,7 +691,7 @@
     <Content Include="Content\tagsinput\magicsuggest.css" />
     <Content Include="Content\tagsinput\magicsuggest.js" />
     <Content Include="Content\TextEditor\demo\demo.css" />
-    <Content Include="Content\TextEditor\demo\demo.html" />
+ 
     <Content Include="Content\TextEditor\jquery-te-1.4.0.css" />
     <Content Include="Content\TextEditor\jquery-te-1.4.0.min.js" />
     <Content Include="Content\TextEditor\jquery-te.png" />
@@ -769,39 +765,8 @@
     <Content Include="Content\theme\offline\ionicons.min.css" />
     <Content Include="Content\theme\offline\jquery-ui.min.js" />
     <Content Include="Content\theme\offline\raphael-min.js" />
-    <Content Include="Content\theme\pages\calendar.html" />
-    <Content Include="Content\theme\pages\charts\chartjs.html" />
-    <Content Include="Content\theme\pages\charts\flot.html" />
-    <Content Include="Content\theme\pages\charts\inline.html" />
-    <Content Include="Content\theme\pages\charts\morris.html" />
-    <Content Include="Content\theme\pages\examples\404.html" />
-    <Content Include="Content\theme\pages\examples\500.html" />
-    <Content Include="Content\theme\pages\examples\blank.html" />
-    <Content Include="Content\theme\pages\examples\invoice-print.html" />
-    <Content Include="Content\theme\pages\examples\invoice.html" />
-    <Content Include="Content\theme\pages\examples\lockscreen.html" />
-    <Content Include="Content\theme\pages\examples\login.html" />
-    <Content Include="Content\theme\pages\examples\register.html" />
-    <Content Include="Content\theme\pages\forms\advanced.html" />
-    <Content Include="Content\theme\pages\forms\editors.html" />
-    <Content Include="Content\theme\pages\forms\general.html" />
-    <Content Include="Content\theme\pages\layout\boxed.html" />
-    <Content Include="Content\theme\pages\layout\collapsed-sidebar.html" />
-    <Content Include="Content\theme\pages\layout\fixed.html" />
-    <Content Include="Content\theme\pages\layout\top-nav.html" />
-    <Content Include="Content\theme\pages\mailbox.html" />
-    <Content Include="Content\theme\pages\mailbox\compose.html" />
-    <Content Include="Content\theme\pages\mailbox\mailbox.html" />
-    <Content Include="Content\theme\pages\mailbox\read-mail.html" />
-    <Content Include="Content\theme\pages\tables\data.html" />
-    <Content Include="Content\theme\pages\tables\simple.html" />
-    <Content Include="Content\theme\pages\UI\buttons.html" />
-    <Content Include="Content\theme\pages\UI\general.html" />
-    <Content Include="Content\theme\pages\UI\icons.html" />
-    <Content Include="Content\theme\pages\UI\modals.html" />
-    <Content Include="Content\theme\pages\UI\sliders.html" />
-    <Content Include="Content\theme\pages\UI\timeline.html" />
-    <Content Include="Content\theme\pages\widgets.html" />
+ 
+    
     <Content Include="Content\theme\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\theme\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\theme\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
