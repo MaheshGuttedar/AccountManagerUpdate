@@ -188,10 +188,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountHoldersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CompanyAccountController.cs" />
-    <Compile Include="Controllers\CompanyClientController.cs" />
-    <Compile Include="Controllers\CompanyController.cs" />
-    <Compile Include="Controllers\CompanyOfficeController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\FinancialYearController.cs" />
@@ -200,13 +196,9 @@
     <Compile Include="Controllers\InvoiceItemController.cs" />
     <Compile Include="Controllers\InvoiceTransactionController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
-    <Compile Include="Controllers\LedgerAccountTypeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuPermissionController.cs" />
-    <Compile Include="Controllers\OfficeTypeController.cs" />
     <Compile Include="Controllers\PaymentStatusController.cs" />
-    <Compile Include="Controllers\ProductCategoryController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuantityUnitController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleUserController.cs" />

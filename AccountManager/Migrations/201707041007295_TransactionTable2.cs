@@ -7,8 +7,8 @@ namespace AccountManager.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.Transaction", "DebitAmount", c => c.Decimal(precision: 18, scale: 2));
-            AlterColumn("dbo.Transaction", "CreditAmount", c => c.Decimal(precision: 18, scale: 2));
+          //  AlterColumn("dbo.Transaction", "DebitAmount", c => c.Decimal(precision: 18, scale: 2));
+           // AlterColumn("dbo.Transaction", "CreditAmount", c => c.Decimal(precision: 18, scale: 2));
         }
         
         public override void Down()

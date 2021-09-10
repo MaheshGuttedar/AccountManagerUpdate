@@ -55,9 +55,9 @@ namespace AccountManager.Models
         public DateTime DateAdded { get; set; }
         public int AddedBy { get; set; }
         public int? OfficeId { get; set; }
-        public virtual CompanyOffice CompanyOffice_OfficeId { get; set; }       
+       // public virtual CompanyOffice CompanyOffice_OfficeId { get; set; }       
         public int? DebitAccount { get; set; }
-        //public virtual LedgerAccountType LedgerAccountType_DebitAccount { get; set; }
+       // public virtual LedgerAccountType LedgerAccountType_DebitAccount { get; set; }
 
 
 

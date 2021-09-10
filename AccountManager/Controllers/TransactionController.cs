@@ -23,6 +23,7 @@ namespace AccountManager.Controllers
         public ActionResult GetGrid()
         {
             int srlno = 1;
+            //decimal DebitAmountTemp = 0;
             var tak = db.Transactions.ToArray();
             var result = from c in tak select new string[] { 
                 c.Id.ToString(),
@@ -34,10 +35,9 @@ namespace AccountManager.Controllers
                Convert.ToString(c.DebitAmount),
                 Convert.ToString(c.CreditAmount),
                  Convert.ToString(c.BalanceAmount),
-                  Convert.ToString(c.PaymentStatusId)
+                   Convert.ToString(c.PaymentStatusId) ==null ? "Generate Invoice" :"Paid"
                   
-           // Convert.ToString(c.AddedBy),
-           //   Convert.ToString(c.DateAdded),
+
 
 
             };
@@ -123,7 +123,7 @@ namespace AccountManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.YearId = new SelectList(db.CompanyOffices, "Id", "StartDate", ObjTransaction.YearId);
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjTransaction.YearId);
             ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjTransaction.AccountHolderId);
 
             return View(ObjTransaction);
@@ -218,7 +218,7 @@ namespace AccountManager.Controllers
             if (id > 0)
             {
                 ViewBag.IsWorking = id;
-                ViewBag.YearId = new SelectList(db.CompanyOffices, "Id", "StartDate", ObjTransaction.YearId);
+                ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjTransaction.YearId);
                 ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjTransaction.AccountHolderId);
 
             }

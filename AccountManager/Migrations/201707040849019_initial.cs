@@ -149,8 +149,8 @@ namespace AccountManager.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CompanyOffice", t => t.OfficeId)
-                .ForeignKey("dbo.LedgerAccountType", t => t.CreditAccount)
-                .ForeignKey("dbo.LedgerAccountType", t => t.DebitAccount)
+                //.ForeignKey("dbo.LedgerAccountType", t => t.CreditAccount)
+                //.ForeignKey("dbo.LedgerAccountType", t => t.DebitAccount)
                 .Index(t => t.OfficeId)
                 .Index(t => t.CreditAccount)
                 .Index(t => t.DebitAccount);

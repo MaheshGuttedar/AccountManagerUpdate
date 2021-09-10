@@ -142,20 +142,12 @@
                                 @Html.DropDownList("OfficeId"," -Select- ") 
                                 @Html.StarkDropDownAjaxLink("/CompanyOffice/Create", "AddMore","")
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DebitAccount, new { @class = "" })
-                                @Html.DropDownList("DebitAccount"," -Select- ") 
-                                @Html.StarkDropDownAjaxLink("/LedgerAccountType/Create", "AddMore","")
-                            </div>
+                          
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DebitAmount, new { @class = "" })
                                 @Html.EditorFor(model => model.DebitAmount)  
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CreditAccount, new { @class = "" })
-                                @Html.DropDownList("CreditAccount"," -Select- ") 
-                                @Html.StarkDropDownAjaxLink("/LedgerAccountType/Create", "AddMore","")
-                            </div>
+                           
                             <div class="form-group">
                                 @Html.LabelFor(model => model.CreditAmount, new { @class = "" })
                                 @Html.EditorFor(model => model.CreditAmount)  

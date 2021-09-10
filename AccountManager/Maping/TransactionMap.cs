@@ -15,7 +15,7 @@ namespace AccountManager.Maping
              HasKey(o => o.Id);
              Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
              Property(o => o.Title).HasMaxLength(200);
-             HasRequired(c => c.CompanyOffice_OfficeId).WithMany(o => o.Transaction_OfficeIds).HasForeignKey(o => o.OfficeId).WillCascadeOnDelete(false);
+            // HasRequired(c => c.CompanyOffice_OfficeId).WithMany(o => o.Transaction_OfficeIds).HasForeignKey(o => o.OfficeId).WillCascadeOnDelete(false);
             // HasOptional(c => c.LedgerAccountType_DebitAccount).WithMany(o => o.Transaction_DebitAccounts).HasForeignKey(o => o.DebitAccount).WillCascadeOnDelete(false);
            // HasOptional(c => c.LedgerAccountType_CreditAccount).WithMany(o => o.Transaction_CreditAccounts).HasForeignKey(o => o.CreditAccount).WillCascadeOnDelete(false);
              ToTable("Transaction");

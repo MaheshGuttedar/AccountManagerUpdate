@@ -60,7 +60,7 @@ namespace AccountManager.Controllers
         {
              ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title");
 ViewBag.ClientId = new SelectList(db.Users, "Id", "Username");
-ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title");
+            ViewBag.OfficeId = 1;
 
              return View();
         }
@@ -119,7 +119,7 @@ ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title");
             }
             ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title", ObjInvoice.Status);
 ViewBag.ClientId = new SelectList(db.Users, "Id", "Username", ObjInvoice.ClientId);
-ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjInvoice.OfficeId);
+            ViewBag.OfficeId = 1;
 
             return View(ObjInvoice);
         }
@@ -215,7 +215,7 @@ ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjInvoice.O
                 ViewBag.IsWorking = id;
                 ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title", ObjInvoice.Status);
 ViewBag.ClientId = new SelectList(db.Users, "Id", "Username", ObjInvoice.ClientId);
-ViewBag.OfficeId = new SelectList(db.CompanyOffices, "Id", "Title", ObjInvoice.OfficeId);
+                ViewBag.OfficeId = 1;
 
             }
             
