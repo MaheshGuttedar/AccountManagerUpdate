@@ -12,8 +12,7 @@ namespace AccountManager.Models
     public class SIContext : DbContext
     {
 	 
-        public SIContext()
-            : base("name=SIConnectionString")
+        public SIContext(): base("name=SIConnectionString")
         {
         }
 
@@ -23,29 +22,21 @@ namespace AccountManager.Models
 		public virtual DbSet<RoleUser> RoleUsers { get; set; }
 		public virtual DbSet<Menu> Menus { get; set; }
 		public virtual DbSet<MenuPermission> MenuPermissions { get; set; }
-	//	public virtual DbSet<CompanyClient> CompanyClients { get; set; }
 		public virtual DbSet<Currency> Currencys { get; set; }
 		public virtual DbSet<FinancialYear> FinancialYears { get; set; }
 		public virtual DbSet<Invoice> Invoices { get; set; }
 		public virtual DbSet<PaymentStatus> PaymentStatuss { get; set; }
-		//public virtual DbSet<Company> Companys { get; set; }
-	//	public virtual DbSet<CompanyAccount> CompanyAccounts { get; set; }
 		public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
 		public virtual DbSet<QuantityUnit> QuantityUnits { get; set; }
-		//public virtual DbSet<LedgerAccountType> LedgerAccountTypes { get; set; }
-	//	public virtual DbSet<ProductCategory> ProductCategorys { get; set; }
-		//public virtual DbSet<Product> Products { get; set; }
 		public virtual DbSet<InvoiceTransaction> InvoiceTransactions { get; set; }
 		public virtual DbSet<Transaction> Transactions { get; set; }
-	//	public virtual DbSet<OfficeType> OfficeTypes { get; set; }
-	//	public virtual DbSet<CompanyOffice> CompanyOffices { get; set; }
 		public virtual DbSet<AccountHolders> AccountHolders { get; set; }
 
 
 		
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-             
+			Database.SetInitializer<SIContext>(null);
 			modelBuilder.Configurations.Add(new AccountManager.Maping.RoleMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.UserMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.RoleUserMap());
@@ -57,7 +48,6 @@ namespace AccountManager.Models
 			modelBuilder.Configurations.Add(new AccountManager.Maping.PaymentStatusMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.InvoiceItemMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.QuantityUnitMap());
-			//modelBuilder.Configurations.Add(new AccountManager.Maping.LedgerAccountTypeMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.InvoiceTransactionMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.TransactionMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.AccountHoldersMap());

@@ -221,23 +221,6 @@
     <Compile Include="Maping\RoleUserMap.cs" />
     <Compile Include="Maping\TransactionMap.cs" />
     <Compile Include="Maping\UserMap.cs" />
-    <Compile Include="Migrations\201707040849019_initial.cs" />
-    <Compile Include="Migrations\201707040849019_initial.Designer.cs">
-      <DependentUpon>201707040849019_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707041001358_changeQuantityUnitAndTranTable.cs" />
-    <Compile Include="Migrations\201707041001358_changeQuantityUnitAndTranTable.Designer.cs">
-      <DependentUpon>201707041001358_changeQuantityUnitAndTranTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707041005481_TransactionTable.cs" />
-    <Compile Include="Migrations\201707041005481_TransactionTable.Designer.cs">
-      <DependentUpon>201707041005481_TransactionTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707041007295_TransactionTable2.cs" />
-    <Compile Include="Migrations\201707041007295_TransactionTable2.Designer.cs">
-      <DependentUpon>201707041007295_TransactionTable2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelDto\HomeDto.cs" />
     <Compile Include="Models\AccountHolders.cs" />
     <Compile Include="Models\Currency.cs" />
@@ -260,11 +243,9 @@
     <Compile Include="Utility\ModalDialogExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\ckeditor\adapters\jquery.js" />
     <Content Include="Content\ckeditor\build-config.js" />
     <Content Include="Content\ckeditor\ckeditor.js" />
     <Content Include="Content\ckeditor\config.js" />
-    <Content Include="Content\ckeditor\contents.css" />
     <Content Include="Content\ckeditor\lang\af.js" />
     <Content Include="Content\ckeditor\lang\ar.js" />
     <Content Include="Content\ckeditor\lang\az.js" />
@@ -506,27 +487,6 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\dialog.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\dialog_ie.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\dialog_ie8.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\dialog_iequirks.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\editor.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\editor_gecko.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\editor_ie.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\editor_ie8.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\editor_iequirks.css" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\icons.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\icons_hidpi.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\arrow.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\close.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\hidpi\close.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\hidpi\lock-open.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\hidpi\lock.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\hidpi\refresh.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\lock-open.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\lock.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\refresh.png" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\DataTable\images\sort_asc.png" />
     <Content Include="Content\DataTable\images\sort_asc_disabled.png" />
@@ -547,19 +507,9 @@
     <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.full.js" />
     <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.full.min.js" />
     <Content Include="Content\datetimepicker-master\build\jquery.datetimepicker.min.js" />
-    <Content Include="Content\datetimepicker-master\index.html" />
     <Content Include="Content\datetimepicker-master\jquery.datetimepicker.css" />
     <Content Include="Content\datetimepicker-master\jquery.datetimepicker.js" />
     <Content Include="Content\datetimepicker-master\jquery.datetimepicker.min.js" />
-    <Content Include="Content\datetimepicker-master\jquery.js" />
-    <Content Include="Content\datetimepicker-master\MIT-LICENSE.txt" />
-    <Content Include="Content\datetimepicker-master\screen\1.png" />
-    <Content Include="Content\datetimepicker-master\screen\2.png" />
-    <Content Include="Content\datetimepicker-master\screen\3.1.png" />
-    <Content Include="Content\datetimepicker-master\screen\3.png" />
-    <Content Include="Content\datetimepicker-master\screen\4.png" />
-    <Content Include="Content\datetimepicker-master\screen\5.png" />
-    <Content Include="Content\datetimepicker-master\screen\6.png" />
     <Content Include="Content\JsLibraries\ClientSide\dist\css\imagecrop.min.css" />
     <Content Include="Content\JsLibraries\ClientSide\dist\css\imagecrop_white.min.css" />
     <Content Include="Content\JsLibraries\ClientSide\dist\js\imagecrop.min.js" />
@@ -575,22 +525,14 @@
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\css\Jcrop.gif" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\css\jquery.Jcrop.css" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\css\jquery.Jcrop.min.css" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\crop.php" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\demos.css" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\main.css" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\pool.jpg" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\sago.jpg" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\sagomod.jpg" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\demo_files\sagomod.png" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\non-image.html" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\demos\styling.html" />
-
- 
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.color.js" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.Jcrop.js" />
     <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.Jcrop.min.js" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\js\jquery.min.js" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\MIT-LICENSE.txt" />
     <Content Include="Content\ModelPopup\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\ModelPopup\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\ModelPopup\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -604,21 +546,7 @@
     <Content Include="Content\ModelPopup\base\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\ModelPopup\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\ModelPopup\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\ModelPopup\base\jquery-ui.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.accordion.css" />
     <Content Include="Content\ModelPopup\base\jquery.ui.all.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.base.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.button.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.core.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.dialog.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.resizable.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.selectable.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.slider.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.tabs.css" />
-    <Content Include="Content\ModelPopup\base\jquery.ui.theme.css" />
     <Content Include="Content\ModelPopup\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\ModelPopup\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\ModelPopup\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -645,8 +573,6 @@
     <Content Include="Content\ModelPopup\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\ModelPopup\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\ModelPopup\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Content\ModelPopup\jquery-1.8.2.js" />
-    <Content Include="Content\ModelPopup\jquery-ui-1.8.24.js" />
     <Content Include="Content\ModelPopup\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\ModelPopup\modaldialog.js" />
     <Content Include="Content\ModelPopup\Plus.png" />
@@ -654,17 +580,6 @@
     <Content Include="Content\NiceDropdown\searchableOptionList.css" />
     <Content Include="Content\NiceDropdown\sol.css" />
     <Content Include="Content\NiceDropdown\sol.js" />
-    <Content Include="Content\notifire\loadera.gif" />
-    <Content Include="Content\notifire\loading.gif" />
-    <Content Include="Content\notifire\loading0.gif" />
-    <Content Include="Content\notifire\loading2.gif" />
-    <Content Include="Content\notifire\loading3.gif" />
-    <Content Include="Content\notifire\loading4.gif" />
-    <Content Include="Content\notifire\loading5.gif" />
-    <Content Include="Content\notifire\loading6.gif" />
-    <Content Include="Content\notifire\loading7.gif" />
-    <Content Include="Content\notifire\loading8.gif" />
-    <Content Include="Content\notifire\loading9.gif" />
     <Content Include="Content\notifire\noti.css" />
     <Content Include="Content\notifire\notij.js" />
     <Content Include="Content\notifire\starkloading.gif" />
@@ -686,19 +601,10 @@
     <Content Include="Content\tabs\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\tabs\Jquery-ui.js" />
     <Content Include="Content\tabs\JqueryUi.css" />
-    <Content Include="Content\tagsinput\magicsuggest-min.css" />
-    <Content Include="Content\tagsinput\magicsuggest-min.js" />
-    <Content Include="Content\tagsinput\magicsuggest.css" />
     <Content Include="Content\tagsinput\magicsuggest.js" />
-    <Content Include="Content\TextEditor\demo\demo.css" />
- 
     <Content Include="Content\TextEditor\jquery-te-1.4.0.css" />
     <Content Include="Content\TextEditor\jquery-te-1.4.0.min.js" />
-    <Content Include="Content\TextEditor\jquery-te.png" />
-    <Content Include="Content\TextEditor\license\AUTHOR.txt" />
-    <Content Include="Content\TextEditor\license\MIT-LICENSE.txt" />
     <Content Include="Content\TextEditor\uncompressed\jquery-te-1.4.0.js" />
-    <Content Include="Content\TextEditor\use refference.txt" />
     <Content Include="Content\theme\bootstrap\css\bootstrap.css" />
     <Content Include="Content\theme\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\theme\bootstrap\css\font-awesome.min.css" />
@@ -726,32 +632,11 @@
     <Content Include="Content\theme\dist\css\skins\skin-yellow.min.css" />
     <Content Include="Content\theme\dist\css\skins\_all-skins.css" />
     <Content Include="Content\theme\dist\css\skins\_all-skins.min.css" />
-    <Content Include="Content\theme\dist\img\avatar.png" />
-    <Content Include="Content\theme\dist\img\avatar04.png" />
-    <Content Include="Content\theme\dist\img\avatar2.png" />
-    <Content Include="Content\theme\dist\img\avatar3.png" />
     <Content Include="Content\theme\dist\img\avatar5.png" />
     <Content Include="Content\theme\dist\img\boxed-bg.jpg" />
     <Content Include="Content\theme\dist\img\boxed-bg.png" />
-    <Content Include="Content\theme\dist\img\credit\american-express.png" />
-    <Content Include="Content\theme\dist\img\credit\cirrus.png" />
-    <Content Include="Content\theme\dist\img\credit\mastercard.png" />
-    <Content Include="Content\theme\dist\img\credit\mestro.png" />
-    <Content Include="Content\theme\dist\img\credit\paypal.png" />
-    <Content Include="Content\theme\dist\img\credit\paypal2.png" />
-    <Content Include="Content\theme\dist\img\credit\visa.png" />
     <Content Include="Content\theme\dist\img\default-50x50.gif" />
-    <Content Include="Content\theme\dist\img\icons.png" />
-    <Content Include="Content\theme\dist\img\photo1.png" />
-    <Content Include="Content\theme\dist\img\photo2.png" />
-    <Content Include="Content\theme\dist\img\user1-128x128.jpg" />
     <Content Include="Content\theme\dist\img\user2-160x160.jpg" />
-    <Content Include="Content\theme\dist\img\user3-128x128.jpg" />
-    <Content Include="Content\theme\dist\img\user4-128x128.jpg" />
-    <Content Include="Content\theme\dist\img\user5-128x128.jpg" />
-    <Content Include="Content\theme\dist\img\user6-128x128.jpg" />
-    <Content Include="Content\theme\dist\img\user7-128x128.jpg" />
-    <Content Include="Content\theme\dist\img\user8-128x128.jpg" />
     <Content Include="Content\theme\dist\js\app.js" />
     <Content Include="Content\theme\dist\js\app.min.js" />
     <Content Include="Content\theme\dist\js\demo.js" />
@@ -761,12 +646,9 @@
     <Content Include="Content\theme\offline\css\font-awesome.min.css" />
     <Content Include="Content\theme\offline\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\theme\offline\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\theme\offline\HELP-US-OUT.txt" />
     <Content Include="Content\theme\offline\ionicons.min.css" />
     <Content Include="Content\theme\offline\jquery-ui.min.js" />
     <Content Include="Content\theme\offline\raphael-min.js" />
- 
-    
     <Content Include="Content\theme\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\theme\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\theme\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
@@ -1262,36 +1144,19 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\logoss.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App.config" />
-    <Content Include="Content\ckeditor\CHANGES.md" />
-    <Content Include="Content\ckeditor\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\scayt\CHANGELOG.md" />
     <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\scayt\README.md" />
     <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\wsc\README.md" />
-    <Content Include="Content\ckeditor\README.md" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\config.json" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
-    <Content Include="Content\ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="Content\datetimepicker-master\.gitignore" />
-    <Content Include="Content\datetimepicker-master\bower.json" />
-    <Content Include="Content\datetimepicker-master\datetimepicker.jquery.json" />
-    <Content Include="Content\datetimepicker-master\package.json" />
-    <Content Include="Content\datetimepicker-master\README.md" />
-    <Content Include="Content\JsLibraries\Jcrop-v0.9.12\README.md" />
-    <Content Include="Content\NiceDropdown\README.md" />
-    <Content Include="Content\tagsinput\.gitignore" />
-    <Content Include="Content\tagsinput\bower.json" />
-    <Content Include="Content\tagsinput\composer.json" />
-    <Content Include="Content\tagsinput\magicsuggest.jquery.json" />
-    <Content Include="Content\tagsinput\README.md" />
     <Content Include="Content\theme\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\theme\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\theme\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -1443,7 +1308,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Uploads\logoss.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1453,7 +1317,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\login.cshtml" />
     <Content Include="Views\Account\register.cshtml" />
     <Content Include="Views\Account\unauthorized.cshtml" />
@@ -1576,6 +1439,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ckeditor\skins\" />
     <Folder Include="Content\simple\" />
   </ItemGroup>
   <ItemGroup>
@@ -1583,20 +1447,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707040849019_initial.resx">
-      <DependentUpon>201707040849019_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707041001358_changeQuantityUnitAndTranTable.resx">
-      <DependentUpon>201707041001358_changeQuantityUnitAndTranTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707041005481_TransactionTable.resx">
-      <DependentUpon>201707041005481_TransactionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707041007295_TransactionTable2.resx">
-      <DependentUpon>201707041007295_TransactionTable2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
