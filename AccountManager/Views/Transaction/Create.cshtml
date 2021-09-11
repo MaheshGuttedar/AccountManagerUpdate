@@ -16,93 +16,209 @@
     if (!Ajax.IsThisAjaxRequest())
     {
         <section class="content-header">
-            <h1>
-                @ViewBag.Title
-                @*<small>@ViewBag.Title</small>*@
-            </h1>
+          
         </section>
+
     }
 }
 <script type="text/javascript">
-        $(function () { 
-            $('select').searchableOptionList({
-                maxHeight: '250px'
-            });
+    $(function () {
+        $('select').searchableOptionList({
+            maxHeight: '100px'
         });
+    });
 </script>
+ 
 @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { enctype = "multipart/form-data",id = "frmTransaction"  }))
 {
     @Html.AntiForgeryToken()
           <!-- Main content -->
-    <section class="content">
-        <!-- Small boxes (Stat box) -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    
+
+      
         <div class="row">
             <div class="col-xs-12">
                 <div class="box box-solid box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Fill Transaction Form</h3>
+                        <h3 class="box-title">Ledger Entry</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <div role="form">
+                    <div role="form" style="height: 448px;">
                         <div class="box-body">
-                          
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.YearId, new { @class = "" })
-                                @Html.DropDownList("YearId", " -Select- ")
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.AccountHolderId, new { @class = "" })
-                                @Html.DropDownList("AccountHolderId", " -Select- ")
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.TransactionDate, new { @class = "" })
-                                @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "" } })
-                                <script>$(function () { $("#TransactionDate").datepicker(); });</script>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.InstallmentNo, new { @class = "" })
-                                @Html.EditorFor(model => model.InstallmentNo)
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Title, new { @class = "" })
-                                @Html.EditorFor(model => model.Title)
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.HireCharge, new { @class = "" })
-                                @Html.EditorFor(model => model.HireCharge)
+                            <div class=" ">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.YearId, new { @class = "" })
+                                                @Html.DropDownList("YearId", " -Select- ")
+
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TransactionDate, new { @class = "" })
+                                                @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "" } })
+                                                <script>$(function () { $("#TransactionDate").datepicker(); });</script>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Title, new { @class = "" })
+                                                @Html.EditorFor(model => model.Title)
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.DebitAmount, new { @class = "" })
+                                                @Html.EditorFor(model => model.DebitAmount)
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.BalanceAmount, new { @class = "" })
+                                                @Html.EditorFor(model => model.BalanceAmount)
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.AccountHolderId, new { @class = "" })
+                                                @Html.DropDownList("AccountHolderId", " -Select- ")
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.InstallmentNo, new { @class = "" })
+                                                <br />
+                                                @Html.EditorFor(model => model.InstallmentNo)
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.HireCharge, new { @class = "" })
+                                                @Html.EditorFor(model => model.HireCharge)
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CreditAmount, new { @class = "" })
+                                                @Html.EditorFor(model => model.CreditAmount)
+                                            </div>
+                                            <div class="box-footer">
+                                                @Html.StarkInputButtion("Save Ledger Entry", "submit", "btn btn-primary", "")
+                                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DebitAmount, new { @class = "" })
-                                @Html.EditorFor(model => model.DebitAmount)
-                            </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CreditAmount, new { @class = "" })
-                                @Html.EditorFor(model => model.CreditAmount)
-                            </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.BalanceAmount, new { @class = "" })
-                                @Html.EditorFor(model => model.BalanceAmount)
-                            </div>
+
+
+
+
+
+
+
+
+
 
 
 
 
 
                         </div>
-                        <div class="box-footer">
-                            @Html.StarkInputButtion("Create New","submit","btn btn-primary","") 
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
-                        </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+</section>
 }
 
 
+<script type="text/javascript">
 
+  
+    $("#YearId").change(function () {
+           
+        $.ajax({
+            type: 'GET',
+            url: '/AccountHolders/GetAccountHolderNames/'+$("#YearId").val(),
+            contentType: 'application/json',
+            datatype: 'json',
+            success: function (data) {
+                alert(data);
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var oTableTransaction = "";
+            var ControlerNameTransaction = "@Url.Content("~/Transaction")";
+            // debugger;
+            oTableTransaction = $("#tbTransaction").dataTable({
+                "bRetrieve": true,
+                "bProcessing": true,
+                "dom": 'lBfrtip',
+                "sAjaxSource": "@Url.Content("~/Transaction/GetGrid")",
+                "buttons": [
+                    // { extend: 'copyHtml5', exportOptions: { columns: ':visible' } }
+                    , { extend: 'excelHtml5', exportOptions: { columns: ':visible' } }
+                    // ,{ extend: 'csvHtml5', exportOptions: { columns: ':visible' } }
+                    , { extend: 'pdfHtml5', exportOptions: { columns: ':visible' } }
+                    // ,{ extend: 'print', exportOptions: { columns: ':visible' } }
+                    , 'colvis'
+                ], columnDefs: [{ visible: false }],
+                "pageLength": 10,
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "aoColumns": [
+
+                    {
+                        "mRender": function (oObj, type, row) {
+
+                            var buttons = '<div class="text-center"> <div class="btn-group text-left"> <button type="button" class="btn btn-default btn-xs btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>';
+                            buttons += '<ul class="dropdown-menu pull-left" role="menu">';
+                            buttons += '<li><a href="' + ControlerNameTransaction + "/MultiViewIndex/" + row[0] + '"><i class="fa fa-edit"></i> Edit</a></li>';
+
+                            buttons += '<li><a href="' + ControlerNameTransaction + "/Details/" + row[0] + '" data-ajax-update="#SkDetails" data-ajax-success="openModalDialog(\'SkDetails\', \'Details\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDetails\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDetails\')" data-ajax="true"><i class="fa fa-info-circle"></i>Quick Details</a></li>';
+                            buttons += '<li><a href="' + ControlerNameTransaction + "/Delete/" + row[0] + '" data-ajax-update="#SkDelete" data-ajax-success="openModalDialog(\'SkDelete\', \'Delete\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDelete\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDelete\')" data-ajax="true"><i class="fa fa-trash-o"></i> Delete</a></a></li>';
+
+                            buttons += '</ul>';
+                            buttons += '</div></div>';
+                            return buttons;
+                        }
+
+                    }, {}
+                    , {}
+                    , {}
+                    , {}
+                    , {}
+                    , {}
+                    , {}
+                    , {}
+                    , {}
+                    , {}
+
+
+        ]
+
+        });
+
+        });
+</script>
+
+ <style>
+     #TransactionDate, #InstallmentNo {
+         width: 100%;
+         height: 34px;
+     }
+     .sol-inner-container {
+         border: 2px solid red;
+     }
+ </style>

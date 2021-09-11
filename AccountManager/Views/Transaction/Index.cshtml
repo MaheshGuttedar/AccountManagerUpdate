@@ -1,114 +1,141 @@
 @{
-      ViewBag.Title = "Transaction List";
-      Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Transaction List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section ScriptsOrCss
 {
-    
-    <link href="~/Content/DataTable/new/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
+
+    <link href="~/Content/DataTable/new/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
     <script src="~/Content/DataTable/new/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="~/Content/DataTable/new/dataTables.buttons.min.js" type="text/javascript"></script>
     <script src="~/Content/DataTable/new/jszip.min.js" type="text/javascript"></script>
     <script src="~/Content/DataTable/new/pdfmake.min.js" type="text/javascript"></script>
     <script src="~/Content/DataTable/new/vfs_fonts.js" type="text/javascript"></script>
     <script src="~/Content/DataTable/new/buttons.html5.min.js" type="text/javascript"></script>
-    <link href="~/Content/DataTable/new/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-    <link href="~/Content/DataTable/new/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/DataTable/new/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DataTable/new/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Content/DataTable/new/buttons.print.min.js"></script>
-    <script src="~/Content/DataTable/new/buttons.colVis.min.js"></script> 
+    <script src="~/Content/DataTable/new/buttons.colVis.min.js"></script>
 }
-    <section class="content-header">
-        <h1>
-            @ViewBag.Title
-            @*<small> @ViewBag.Title</small>*@
-        </h1>
-    </section>
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        @*<small> @ViewBag.Title</small>*@
+    </h1>
+</section>
 
-    <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-solid box-primary">
-
-                    <div class="box-body">
-                        <!-- Split button -->
-                        <div class="margin"> 
-                            <div class="btn-group"> 
-                                @*@Ajax.ModalDialogActionLink("Create Quick", "Create", "Create ", "btn btn-dropbox")*@ 
-                            </div> 
-                            <div class="btn-group"> 
-                                <a href="~/Transaction/Create" class="btn btn-dropbox">Create </a>
-                            </div>  
-                        </div>
-                        <!-- flat split buttons -->
-                    </div><!-- /.box-body -->
-                </div>
-                <div class="box box-solid box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">@ViewBag.Title</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-
-                        <div class="margin">
-
-                            <div class="streaming-table">
-                                <span id="found" class="label label-info"></span>
-
-
-                                <table id="tbTransaction" class="display nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Actions</th>
-                                            <th> Sl No.  </th>
-                                            <th> Date </th>
-                                            <th> Installment No.  </th>
-                                            <th> Particulars  </th>
-                                            <th> HireCharge   </th>
-
-                                            <th> Debit Amount  </th>
-                                            <th> Due Amount  </th>
-
-                                            <th> Credit Amount  </th>
-                                            <th> Balance Amount  </th>
-                                            <th> Invoice Status  </th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-
-                                <div id="summary">
-                                    <div>
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-solid box-primary">
+                
+                <div class="box-body" style="height:100px;">
+                    <!-- Split button -->
+                    <div class="margin">
+                        <div class=" ">
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div class="btn-group">
+                                                <a href="~/Transaction/Create" class="btn btn-dropbox">New Ledger Entry </a>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-8">
+
+                                        <div class="form-group">
+                                            Select Year:
+                                            <select id="YearId" name="YearId">
+                                                <option value=""> -Select- </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            Select Account Holder
+                                            <select id="AccountHolderId" name="AccountHolderId">
+                                                <option value=""> -Select- </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+
+                        
+
+
+
+                    </div>
+
+                    <!-- flat split buttons -->
+                </div><!-- /.box-body -->
+            </div>
+            <div class="box box-solid box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+
+                    <div class="margin">
+
+                        <div class="streaming-table">
+                            <span id="found" class="label label-info"></span>
+
+
+                            <table id="tbTransaction" class="display nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Actions</th>
+                                        <th> Sl No.  </th>
+                                        <th> Date </th>
+                                        <th> Installment No.  </th>
+                                        <th> Particulars  </th>
+                                        <th> HireCharge   </th>
+
+                                        <th> Debit Amount  </th>
+                                        <th> Due Amount  </th>
+
+                                        <th> Credit Amount  </th>
+                                        <th> Balance Amount  </th>
+                                        <th> Invoice Status  </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            <div id="summary">
+                                <div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="box box-solid box-primary">
-
-                    <div class="box-body">
-                        <!-- Split button -->
-                        <div class="margin">
-                            <div class="btn-group"> 
-                                @*@Ajax.ModalDialogActionLink("Create Quick", "Create", "Create ", "btn btn-dropbox")*@ 
-                            </div> 
-                            <div class="btn-group"> 
-                                <a href="~/Transaction/Create" class="btn btn-dropbox">Create</a>
-                            </div> 
-                        </div>
-                        <!-- flat split buttons -->
-                    </div><!-- /.box-body -->
-                </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
 
 
 
 
-     <script type="text/javascript">
+<script type="text/javascript">
 
         $(document).ready(function () {
             var oTableTransaction = "";
@@ -124,7 +151,7 @@
                     , { extend: 'excelHtml5', exportOptions: { columns: ':visible' } }
                     // ,{ extend: 'csvHtml5', exportOptions: { columns: ':visible' } }
                     , { extend: 'pdfHtml5', exportOptions: { columns: ':visible' } }
-                    // ,{ extend: 'print', exportOptions: { columns: ':visible' } } 
+                    // ,{ extend: 'print', exportOptions: { columns: ':visible' } }
                     , 'colvis'
                 ], columnDefs: [{ visible: false }],
                 "pageLength": 10,
@@ -161,7 +188,38 @@
         ]
 
         });
-        
-        });
-    </script>
 
+        });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       
+        $.ajax({
+            type: "GET",
+            url: "/FinancialYear/getYear",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (res) {
+                $("#YearId").append($("<option></option>").val("1").html("2021"));
+                $("#YearId").append($("<option></option>").val("2").html("2022"));
+
+                //$.each(res, function (i, value) {
+                //    $("#YearId").append($("<option></option>").val(value[i].Value).html(value[i].Text));
+                //    console.log(value);
+                //})
+            }
+        });
+
+        $.ajax({
+            type: "GET", url: "AccountHolders/getallAccountholders", dataType: "json", contentType: "application/json", success: function (res) {
+                $("#AccountHolderId").append($("<option></option>").val("1").html("Mahesh"));
+                $("#AccountHolderId").append($("<option></option>").val("2").html("wewewe"));
+            }
+
+        });
+
+    })
+
+</script>  

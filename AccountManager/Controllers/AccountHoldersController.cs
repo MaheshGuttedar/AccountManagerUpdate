@@ -114,7 +114,42 @@ namespace AccountManager.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        // GET: AccountHolders/GetAccountHolderNames/2010
+        public ActionResult GetAccountHolderNames(int YearId)
+        {
+            
+            var accountHolders = db.AccountHolders.Where(x => x.YearId == YearId).Select(n => n.Name).ToList();
+          
 
+          
+            if (accountHolders == null)
+            {
+                return HttpNotFound();
+            }
+            return View(accountHolders);
+        }
+        // GET AccountHolders/getallAccountholders
+        public ActionResult getallAccountholderstest()
+        {
+            var tak = db.AccountHolders.ToArray();
+            var result = from c in tak
+                         select new string[] { c.Id.ToString(), Convert.ToString(c.Name)
+
+             };
+            return Json(new { result }, JsonRequestBehavior.AllowGet);
+        }
+        // GET AccountHolders/getallAccountholders
+        public JsonResult getallAccountholders()
+        {
+            var result = (from obj in db.AccountHolders
+                                     select new SelectListItem()
+                                     {
+                                         Text = obj.Id.ToString(),
+                                         Value = obj.Name.ToString(),
+                                     }).ToList();
+
+            return Json(new { result }, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

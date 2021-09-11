@@ -24,15 +24,15 @@ namespace AccountManager.Controllers
         {
             var tak = db.Invoices.ToArray();
              
-            var result = from c in tak select new string[] { c.Id.ToString(), Convert.ToString(c.Id), 
+            var result = from c in tak select new string[] { c.Id.ToString(), 
+                Convert.ToString(c.Id), 
             Convert.ToString(c.BillDate), 
             Convert.ToString(c.DueDate), 
             Convert.ToString(c.PaymentStatus_Status.Title), 
-            Convert.ToString(c.LastEmailed), 
-            Convert.ToString(c.OtherInvoiceCode), 
-            Convert.ToString(c.User_ClientId.Username), 
-            Convert.ToString(c.CreatedBy), 
-            Convert.ToString(1), 
+           
+            Convert.ToString(c.OtherInvoiceCode)            
+              
+             
              };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
@@ -58,11 +58,14 @@ namespace AccountManager.Controllers
         // GET: /Invoice/Create
         public ActionResult Create()
         {
-             ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title");
-ViewBag.ClientId = new SelectList(db.Users, "Id", "Username");
-            ViewBag.OfficeId = 1;
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");
+            ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name");
+            ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title");
 
-             return View();
+            ViewBag.OfficeId = 1;
+            ViewBag.CreatedBy = 1;
+
+            return View();
         }
 
         // POST: /Invoice/Create
@@ -76,6 +79,11 @@ ViewBag.ClientId = new SelectList(db.Users, "Id", "Username");
             System.Text.StringBuilder sb = new System.Text.StringBuilder(); 
             try
             {
+                ObjInvoice.OfficeId = 1;
+                ObjInvoice.CreatedBy = 1;
+
+                ObjInvoice.ClientId = 1;
+
                 if (ModelState.IsValid)
                 { 
                     

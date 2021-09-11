@@ -22,6 +22,7 @@ namespace AccountManager.Controllers
         // GET Transaction/GetGrid
         public ActionResult GetGrid()
         {
+           
             int srlno = 1;
             //decimal DebitAmountTemp = 0;
             var tak = db.Transactions.ToArray();
@@ -277,6 +278,35 @@ namespace AccountManager.Controllers
                  };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
+        // GET: Transaction/GetAccountHolderNames/2010
+        public ActionResult GetLedgerEntryDetails(int AccountHolderId)
+        {
+            int srlno = 1;
+            //decimal DebitAmountTemp = 0;
+            var tak = db.Transactions.Where(x=>x.AccountHolderId == AccountHolderId).ToArray();
+            var result = from c in tak
+                         select new string[] {
+                c.Id.ToString(),
+                 Convert.ToString(srlno++),
+                 Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
+                  Convert.ToString(c.InstallmentNo),
+            Convert.ToString(c.Title),
+              Convert.ToString(c.HireCharge),
+               Convert.ToString(c.DebitAmount),
+                Convert.ToString(c.BalanceAmount-c.CreditAmount),
+                Convert.ToString(c.CreditAmount),
+
+                    Convert.ToString(c.BalanceAmount),
+                   (Convert.ToString(c.PaymentStatusId) ==null || string.IsNullOrEmpty(Convert.ToString(c.PaymentStatusId)) ) ? "Generate Invoice" :"Paid"
+
+
+
+
+            };
+            return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         private SIContext db = new SIContext();
 		

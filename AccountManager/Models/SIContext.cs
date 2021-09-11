@@ -36,7 +36,7 @@ namespace AccountManager.Models
 		
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-			Database.SetInitializer<SIContext>(null);
+			//Database.SetInitializer<SIContext>(null);
 			modelBuilder.Configurations.Add(new AccountManager.Maping.RoleMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.UserMap());
 			modelBuilder.Configurations.Add(new AccountManager.Maping.RoleUserMap());

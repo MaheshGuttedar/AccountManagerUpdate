@@ -23,13 +23,7 @@
         </section>
     }
 }
-<script type="text/javascript">
-        $(function () { 
-            $('select').searchableOptionList({
-                maxHeight: '250px'
-            });
-        });
-</script>
+ 
 @using (Html.BeginForm("Create", "Invoice", FormMethod.Post, new { enctype = "multipart/form-data",id = "frmInvoice"  }))
 {
     @Html.AntiForgeryToken()
@@ -40,51 +34,66 @@
             <div class="col-xs-12">
                 <div class="box box-solid box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Fill Invoice Form</h3>
+                        <h3 class="box-title">Generate Invoice </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div role="form">
                         <div class="box-body">
-                              
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.BillDate, new { @class = "" }) 
-                                @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "" } })
-                                <script> $(function () { $("#BillDate").datepicker(); }); </script> 
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DueDate, new { @class = "" }) 
-                                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "" } })
-                                <script> $(function () { $("#DueDate").datepicker(); }); </script> 
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Status, new { @class = "" })
-                                @Html.DropDownList("Status"," -Select- ") 
-                                @Html.StarkDropDownAjaxLink("/PaymentStatus/Create", "AddMore","")
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.LastEmailed, new { @class = "" })
-                                @Html.EditorFor(model => model.LastEmailed)  
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.OtherInvoiceCode, new { @class = "" })
-                                @Html.EditorFor(model => model.OtherInvoiceCode)  
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ClientId, new { @class = "" })
-                                @Html.DropDownList("ClientId"," -Select- ") 
-                                @Html.StarkDropDownAjaxLink("/User/Create", "AddMore","")
-                            </div>
-                            <div class="form-group">
-                                @Html.Hidden("CreatedBy", Env.GetUserInfo("userid")) 
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.OfficeId, new { @class = "" })
-                                @Html.DropDownList("OfficeId"," -Select- ") 
-                                @Html.StarkDropDownAjaxLink("/CompanyOffice/Create", "AddMore","")
-                            </div>
+                           
+                         
 
 
+
+                          
+
+
+
+                            <div class=" ">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.YearId, new { @class = "" })
+                                                @Html.DropDownList("YearId", " -Select- ")
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.OtherInvoiceCode, new { @class = "" })
+                                                @Html.EditorFor(model => model.OtherInvoiceCode)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.DueDate, new { @class = "" })
+                                                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "" } })
+                                                <script>$(function () { $("#DueDate").datepicker(); });</script>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.AccountHolderId, new { @class = "" })
+                                                @Html.DropDownList("AccountHolderId", " -Select- ")
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.BillDate, new { @class = "" })
+                                                @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "" } })
+                                                <script>$(function () { $("#BillDate").datepicker(); });</script>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Status, new { @class = "" })
+                                                @Html.DropDownList("Status", " -Select- ")
+                                                @*@Html.StarkDropDownAjaxLink("/PaymentStatus/Create", "AddMore", "")*@
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>
@@ -101,3 +110,14 @@
 
 
 
+<style>
+    #DueDate{
+        width:100%;
+    }
+    #BillDate {
+        width: 295px;
+    }
+    #Status, #YearId, #AccountHolderId {
+        width: 295px;
+    }
+</style>

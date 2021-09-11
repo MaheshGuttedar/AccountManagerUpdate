@@ -33,10 +33,10 @@ namespace AccountManager.Models
         [DisplayName("Balance Amount ")]
         [Required(ErrorMessage = "Enter Balance Amt")]
         public decimal BalanceAmount { get; set; }
-        [DisplayName("Account Holders")]
+        [DisplayName("Select Account Holder")]
         [Required(ErrorMessage = "Select Account Holder")]
         public int AccountHolderId { get; set; }
-        [DisplayName("Year ")]
+        [DisplayName("Select Year ")]
         [Required(ErrorMessage = "Select Year")]
         public int YearId { get; set; }
 

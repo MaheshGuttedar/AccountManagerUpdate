@@ -21,19 +21,7 @@
 <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-        <div class="col-lg-2 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>  @Model.Asset </h3>
-                    <p>Total Asset </p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-money"></i>
-                </div>
-                <a class="small-box-footer" href="~/Transaction/">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div><!-- ./col -->
+         
         <div class="col-lg-2 col-xs-3">
             <!-- small box -->
             <div class="small-box bg-yellow">
@@ -74,19 +62,7 @@
                 <a class="small-box-footer" href="~/Customers/">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
-        <div class="col-lg-2 col-xs-3">
-            <!-- small box -->
-            <div class="small-box bg-red">
-                <div class="inner">
-                    <h3>@Model.Invoice </h3>
-                    <p> Invoice</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-file-text"></i>
-                </div>
-                <a class="small-box-footer" href="~/Invoice/">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div><!-- ./col -->
+         <!-- ./col -->
         <!--<div class="col-lg-2 col-xs-3">-->
             <!-- small box -->
             <!--<div class="small-box bg-gray">
@@ -107,133 +83,12 @@
 
 
 
-    <div class="row">
-        
+     
 
-        <div class="col-md-5">
-            <div class="box box-primary direct-chat direct-chat-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">User And Role</h3>
-                    <div class="box-tools pull-right">
-                        <button data-widget="collapse" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
-                        <button data-widget="remove" class="btn btn-box-tool"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                @*<div class="box-body chart-responsive">
-                    <div id="bindPieChart"></div>
-                </div>*@
-            </div>
-        </div>
-       
-
-        <div class="col-md-7">
-            <div class="box box-primary direct-chat direct-chat-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Full Details</h3>
-                    <div class="box-tools pull-right">
-                        <button data-widget="collapse" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
-                        <button data-widget="remove" class="btn btn-box-tool"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                @*<div class="box-body chart-responsive">
-                    <button class="btn btn-primary btn-xs" id="plain">Plain</button>
-                    <button class="btn btn-info btn-xs" id="inverted">Inverted</button>
-                    <button class="btn btn-success btn-xs" id="polar">Polar</button>
-                    <div class="chart" id="otherInfo"></div>
-                </div>*@
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-aqua">
-                <span class="info-box-icon"><i class="fa fa-bar-chart-o"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Transaction </span>
-                    <span class="info-box-number">@Model.Transaction </span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 100%"></div>
-                    </div>
-
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-green">
-                <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text"> </span>
-                    <span class="info-box-number"> </span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 100%"></div>
-                    </div>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-yellow">
-                <span class="info-box-icon"><i class="fa fa-map"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text"> </span>
-                    <span class="info-box-number"> </span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 100%"></div>
-                    </div>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-red">
-                <span class="info-box-icon"><i class="fa fa-phone"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text"> </span>
-                    <span class="info-box-number"> </span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 100%"></div>
-                    </div>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div><!-- /.col -->
-    </div>
+     
 
 
-    <div class="row"> 
-        <div class="col-md-8">
-            @*<div class="box box-primary direct-chat direct-chat-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">This week Transactions</h3>
-                    <div class="box-tools pull-right">
-                        <button data-widget="collapse" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
-                        <button data-widget="remove" class="btn btn-box-tool"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body chart-responsive">
-                    <div class="chart" id="line-chart"></div>
-                </div>
-            </div>*@
-        </div>
-
-        @*<div class="col-md-4">
-            <div class="box box-primary direct-chat direct-chat-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Chart</h3>
-                    <div class="box-tools pull-right">
-                        <button data-widget="collapse" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
-                        <button data-widget="remove" class="btn btn-box-tool"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body chart-responsive">
-                    <div class="chart" id="work-chart"></div>
-                </div>
-            </div>
-        </div>*@
-
-        
-
-
-    </div>
+     
  
 
 </section>
