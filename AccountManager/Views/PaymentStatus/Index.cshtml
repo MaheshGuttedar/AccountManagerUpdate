@@ -127,7 +127,7 @@
                                      
  var buttons = '<div class="text-center"> <div class="btn-group text-left"> <button type="button" class="btn btn-default btn-xs btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>';
                     buttons += '<ul class="dropdown-menu pull-left" role="menu">';
-                    buttons += '<li><a href="' + ControlerNamePaymentStatus + "/MultiViewIndex/" + row[0] + '"><i class="fa fa-edit"></i>Full Edit</a></li>';
+                    buttons += '<li><a href="' + ControlerNamePaymentStatus + "/MultiViewIndex/" + row[0] + '"><i class="fa fa-edit"></i>Edit</a></li>';
                     buttons += '<li class="divider"></li>';
                     buttons += '<li><a href="' + ControlerNamePaymentStatus + "/Edit/" + row[0] + '" data-ajax-update="#SkEdit" data-ajax-success="openModalDialog(\'SkEdit\', \'Edit\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkEdit\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkEdit\')" data-ajax="true"><i class="fa fa-pencil-square"></i>Quick Edit</a></li>';
                     buttons += '<li><a href="' + ControlerNamePaymentStatus + "/Details/" + row[0] + '" data-ajax-update="#SkDetails" data-ajax-success="openModalDialog(\'SkDetails\', \'Details\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDetails\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDetails\')" data-ajax="true"><i class="fa fa-info-circle"></i>Quick Details</a></li>';

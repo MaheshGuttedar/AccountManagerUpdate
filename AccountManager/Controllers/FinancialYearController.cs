@@ -30,27 +30,15 @@ namespace AccountManager.Controllers
              };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
-        // GET FinancialYear/getYear
-        public ActionResult getYeartest()
-        {
-            var tak = db.FinancialYears.ToArray();
-            var result = from c in tak
-                         select new string[] { c.Id.ToString(), Convert.ToString(c.StartDate)
       
-             };           
-            return Json(new {  result }, JsonRequestBehavior.AllowGet);
-        }
-        // GET FinancialYear/getYear
-        public JsonResult getYear()
+        // GET FinancialYear/getYears
+        public ActionResult getYears()
         {
-            var result = (from obj in db.FinancialYears
-                                     select new SelectListItem()
-                                     {
-                                         Text = obj.Id.ToString(),
-                                         Value = obj.StartDate.ToString(),
-                                     }).ToList();
-
-            return Json(new { result }, JsonRequestBehavior.AllowGet);
+            return Json(db.FinancialYears.Select(x => new
+            {
+                Text = x.Id,
+                Value = x.StartDate
+            }).ToList(), JsonRequestBehavior.AllowGet);
         }
         // GET: /FinancialYear/ModelBindIndex
         public ActionResult ModelBindIndex()

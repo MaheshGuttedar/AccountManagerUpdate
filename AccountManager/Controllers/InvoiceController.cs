@@ -68,6 +68,18 @@ namespace AccountManager.Controllers
             return View();
         }
 
+        // GET: /Invoice/GenerateInvoice
+        public ActionResult GenerateInvoice(int Id)
+        {
+            //ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");
+            //ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name");
+            //ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title");
+
+            ViewBag.TransactionId = Id;
+
+            return View();
+        }
+
         // POST: /Invoice/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -126,7 +138,7 @@ namespace AccountManager.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.PaymentStatuss, "Id", "Title", ObjInvoice.Status);
-ViewBag.ClientId = new SelectList(db.Users, "Id", "Username", ObjInvoice.ClientId);
+            ViewBag.ClientId = new SelectList(db.Users, "Id", "Username", ObjInvoice.ClientId);
             ViewBag.OfficeId = 1;
 
             return View(ObjInvoice);

@@ -24,7 +24,7 @@ namespace AccountManager.Controllers
         {
            
             int srlno = 1;
-            //decimal DebitAmountTemp = 0;
+            string link = "/Invoice/Create/";
             var tak = db.Transactions.ToArray();
             var result = from c in tak select new string[] { 
                 c.Id.ToString(),
@@ -38,8 +38,8 @@ namespace AccountManager.Controllers
                 Convert.ToString(c.CreditAmount),
                
                     Convert.ToString(c.BalanceAmount),
-                   Convert.ToString(c.PaymentStatusId) ==null ? "Generate Invoice" :"Paid"
-                  
+                   string.IsNullOrEmpty(Convert.ToString(c.PaymentStatusId)) ==true ? "<a href='"+link+c.Id.ToString()+"' >Generate Invoice </a>" :"Paid"
+            
 
 
 
@@ -285,29 +285,62 @@ namespace AccountManager.Controllers
             //decimal DebitAmountTemp = 0;
             var tak = db.Transactions.Where(x=>x.AccountHolderId == AccountHolderId).ToArray();
             var result = from c in tak
-                         select new string[] {
-                c.Id.ToString(),
-                 Convert.ToString(srlno++),
-                 Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
-                  Convert.ToString(c.InstallmentNo),
+            select new string[] {
+            c.Id.ToString(),
+            Convert.ToString(srlno++),
+            Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
+            Convert.ToString(c.InstallmentNo),
             Convert.ToString(c.Title),
-              Convert.ToString(c.HireCharge),
-               Convert.ToString(c.DebitAmount),
-                Convert.ToString(c.BalanceAmount-c.CreditAmount),
-                Convert.ToString(c.CreditAmount),
-
-                    Convert.ToString(c.BalanceAmount),
-                   (Convert.ToString(c.PaymentStatusId) ==null || string.IsNullOrEmpty(Convert.ToString(c.PaymentStatusId)) ) ? "Generate Invoice" :"Paid"
-
-
-
-
-            };
+            Convert.ToString(c.HireCharge),
+            Convert.ToString(c.DebitAmount),
+            Convert.ToString(c.BalanceAmount-c.CreditAmount),
+            Convert.ToString(c.CreditAmount),
+            Convert.ToString(c.BalanceAmount),
+            (Convert.ToString(c.PaymentStatusId) ==null || string.IsNullOrEmpty(Convert.ToString(c.PaymentStatusId)) ) ? "Generate Invoice" :"Paid"};
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
 
+        // POST: /Transaction/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult NewEntry(int id)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            try
+            {
+                Transaction ObjTransaction = new Transaction();
+                ObjTransaction.DateAdded = DateTime.Now;
+                ObjTransaction.AddedBy = int.Parse(Env.GetUserInfo("userid"));
+                ObjTransaction.OfficeId = 1;
+                if (ModelState.IsValid)
+                {
+                    db.Transactions.Add(ObjTransaction);
+                    db.SaveChanges();
+                    sb.Append("Sumitted");
+                    return Content(sb.ToString());
+                }
+                else
+                {
+                    foreach (var key in this.ViewData.ModelState.Keys)
+                    {
+                        foreach (var err in this.ViewData.ModelState[key].Errors)
+                        {
+                            sb.Append(err.ErrorMessage + "<br/>");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                sb.Append("Error :" + ex.Message);
+            }
 
+            return Content(sb.ToString());
 
+        }
         private SIContext db = new SIContext();
 		
 		

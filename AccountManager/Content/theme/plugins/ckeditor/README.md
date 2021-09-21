@@ -10,7 +10,7 @@ part of web applications and websites.
 
 ## Documentation
 
-The full editor documentation is available online at the following address:
+The Editor documentation is available online at the following address:
 http://docs.ckeditor.com
 
 ## Installation

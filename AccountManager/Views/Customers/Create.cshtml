@@ -26,66 +26,74 @@
 
 @using (Html.BeginForm("Create", "Customers", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmCustomer" }))
 {
-    @Html.AntiForgeryToken()
-    <!-- Main content -->
+    @Html.AntiForgeryToken()<!-- Main content -->
 
+<section class="content">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-solid box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Fill Account Holders Details</h3>
+                        </div>
+                        <div class="row">
+                            <div class="form-group ">
 
-    <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box box-solid box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Fill Account Holders Details</h3>
-                    </div>
-                    <div class="row">
-                        <div class="form-group ">
-            
-                            <div class="text-center" style="padding-bottom: 10px; padding-top: 5px">
+                                <div class="text-center" style="padding-bottom: 10px; padding-top: 5px">
+                                    <img id="account-holder-image" name="UserPhoto"   src="~/Content/theme/dist/img/avatar5.png" class="img-circle z-depth-2" alt="user-photo" width="180" height="180">
+                                </div>
+                                <div class="text-center">
+                                    <label class="btn btn-primary" for="my-file-selector">
+                                        <input id="my-file-selector" type="file" name="ImageData" style="display:none"
+                                               onchange="show(this);fileCheck(this);" />
+                                        @Html.ValidationMessageFor(model => model.CustomerPhoto)
+                                        Upload Photo Here...
+                                    </label>
 
-                                <img id="account-holder-image" src="~/Content/theme/dist/img/avatar5.png" class="img-circle z-depth-2" alt="user-photo" width="180" height="180">
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(model => model.CustomerPhoto, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
+                                            @Html.ValidationMessageFor(model => model.CustomerPhoto)
+                                        </div>
+                                    </div>*@
+                                </div>
 
                             </div>
-                            <div class="text-center">
-                                <label class="btn btn-primary" for="my-file-selector">
-                                    <input id="my-file-selector" type="file" style="display:none"
-                                           onchange="show(this)" />
-                                    Upload Photo Here...
-                                </label>
-                                <span class='label label-info' id="upload-file-info"></span>
-                            </div>
+
 
                         </div>
 
+                        <div class="col-md-6">
 
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-4" style=" padding-top: 17px; ">
-                                    @Html.LabelFor(model => model.AccountNoFromRegister, new { @class = "" })
-                                    @Html.EditorFor(model => model.AccountNoFromRegister, new { htmlAttributes = new { style = "width: 120px" } })
-                                    @Html.LabelFor(model => model.LoanAdvance, new { @class = "" })
-                                    @Html.EditorFor(model => model.LoanAdvance, new { htmlAttributes = new { style = "width: 120px" } })
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4" style=" padding-top: 17px; ">
+                                        @Html.LabelFor(model => model.AccountNoFromRegister, new { @class = "" })
+                                        @Html.EditorFor(model => model.AccountNoFromRegister, new { htmlAttributes = new { style = "width: 120px" } })
+                                        @Html.LabelFor(model => model.LoanAdvance, new { @class = "" })
+                                        @Html.EditorFor(model => model.LoanAdvance, new { htmlAttributes = new { style = "width: 120px" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(model => model.TotalInstallments, new { @class = "" })<br />
+                                    @Html.EditorFor(model => model.TotalInstallments, new { htmlAttributes = new { style = "width: 120px;height: 35px;" } })
+                                    @Html.LabelFor(model => model.InstallmentAmount, new { @class = "" })
+                                    @Html.EditorFor(model => model.InstallmentAmount, new { htmlAttributes = new { style = "width: 120px" } })
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.LabelFor(model => model.LoanAdvanceDate, new { @class = "" })
+                                    @Html.EditorFor(model => model.LoanAdvanceDate, new { htmlAttributes = new { style = "width: 120px" } })
+                                    <script>$(function () { $("#LoanAdvanceDate").datepicker(); });</script>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                @Html.LabelFor(model => model.TotalInstallments, new { @class = "" })<br />
-                                @Html.EditorFor(model => model.TotalInstallments, new { htmlAttributes = new { style = "width: 120px;height: 35px;" } })
 
-                                @Html.LabelFor(model => model.InstallmentAmount, new { @class = "" })
-                                @Html.EditorFor(model => model.InstallmentAmount, new { htmlAttributes = new { style = "width: 120px" } })
+
+                            <div class="user">
+                                <i class="fa fa-user"></i>
+                                @Html.LabelFor(model => model.Name, new { @class = "" })
+                                @Html.EditorFor(model => model.Name)
                             </div>
-                        </div>
-
-
-                        <div class="user">
-                            <i class="fa fa-user"></i>
-                            @Html.LabelFor(model => model.Name, new { @class = "" })
-                            @Html.EditorFor(model => model.Name)
-                        </div>
                             <div class="address">
                                 <i class="fa fa-address-card-o"></i>
                                 @Html.LabelFor(model => model.Address, new { @class = "" })
@@ -99,11 +107,11 @@
                             @Html.LabelFor(model => model.GuarantorName, new { @class = "" })
                             @Html.EditorFor(model => model.GuarantorName)
 
-                    <div class="GuarantorAddress">
-                        <i class="fa fa-address-card-o"></i>
-                        @Html.LabelFor(model => model.GuarantorAddress, new { @class = "" })
-                        @Html.TextAreaFor(model => model.GuarantorAddress, new { @class = "form-control areaWidth" })
-                    </div>
+                            <div class="GuarantorAddress">
+                                <i class="fa fa-address-card-o"></i>
+                                @Html.LabelFor(model => model.GuarantorAddress, new { @class = "" })
+                                @Html.TextAreaFor(model => model.GuarantorAddress, new { @class = "form-control areaWidth" })
+                            </div>
 
                             @Html.LabelFor(model => model.GuarantorMobile, new { @class = "" })
                             @Html.EditorFor(model => model.GuarantorMobile)
@@ -140,23 +148,18 @@
                             @Html.EditorFor(model => model.DueDate)
                             <script>$(function () { $("#DueDate").datepicker(); });</script>
 
-                            <div class="act-email">
-                                <i class="fa fa-envelope"></i>
-                                @Html.LabelFor(model => model.Email, new { @class = "" })
-                                @Html.EditorFor(model => model.Email)
 
-                            </div>
-                        
+
 
                             @Html.LabelFor(model => model.YearId, new { @class = "" })
                             @Html.DropDownList("YearId", " -Select- ")
                             @Html.StarkDropDownAjaxLink("/FinancialYear/Create", "AddMore", "")
                             <br />
+                            <br />
+                            <br />
 
 
-                            @Html.LabelFor(model => model.IsActive, new { @class = "" })
 
-                            @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { style = "width: 18px;height: 18px;" } })
 
                         </div>
                         <div role="form">
@@ -164,14 +167,24 @@
 
 
                             <div class="box-footer">
-                                @Html.StarkInputButtion("Save Account", "submit", "btn btn-primary", "")
-                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="    padding: 10px;    text-align: center;">
+                                        @Html.StarkInputButtion("Save Account", "submit", "btn btn-primary", "")
+                                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                                    </div>
+
+                                        
+                                    </div>
+
+                                </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    
+
+
 
 
 
@@ -181,6 +194,10 @@
 <style>
     .areaWidth {
         width: 471px;
+    }
+
+    #YearId {
+        width: 470px;
     }
 </style>
 
@@ -197,3 +214,11 @@
     }
 </script>
 
+<script type="text/javascript">
+    function fileCheck(obj) {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+        if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+        }
+    }
+</script>

@@ -21,7 +21,6 @@ namespace AccountManager.Maping
             Property(o => o.GuarantorName).HasMaxLength(150);
             Property(o => o.GuarantorAddress).HasMaxLength(1050);
             Property(o => o.GuarantorMobile).HasMaxLength(13);          
-            Property(o => o.Email).HasMaxLength(500);            
             Property(o => o.Cell).HasMaxLength(100);
             Property(o => o.RegNo).HasMaxLength(100);
             Property(o => o.Model).HasMaxLength(100);            
@@ -29,8 +28,8 @@ namespace AccountManager.Maping
             Property(o => o.ChassisNo).HasMaxLength(100);
             Property(o => o.EngineNo).HasMaxLength(100);
             Property(o => o.InsuranceUpto).HasMaxLength(10);
-            Property(o => o.DueDate).HasMaxLength(10);// ends 
-            Property(o => o.Email).HasMaxLength(200);
+            Property(o => o.DueDate).HasMaxLength(10);
+            Property(o => o.LoanAdvanceDate).HasMaxLength(10);
             Property(o => o.IsActive);
             Property(o => o.CompanyId);
             Property(o => o.AccountId);

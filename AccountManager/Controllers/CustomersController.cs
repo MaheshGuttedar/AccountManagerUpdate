@@ -24,18 +24,23 @@ namespace AccountManager.Controllers
         {
             int slrno = 1;
             var tak = db.AccountHolders.ToArray();
-            var result = from c in tak  select new string[] {Convert.ToString(c.Id),
+            var result = from c in tak  select new string[] {
+            Convert.ToString(c.Id),
             Convert.ToString(slrno++),             
             Convert.ToString(c.Name),
+            Convert.ToString(c.AccountNoFromRegister),
+            Convert.ToString(c.InstallmentAmount + " * "+Convert.ToString(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id)))),
+            Convert.ToString(c.InstallmentAmount*Convert.ToInt64(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id)))),
+           
+            Convert.ToString(Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id))),//completed inst
+            Convert.ToString(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id))),//pending inst
+             Convert.ToString(c.Make),
+             Convert.ToString(c.TotalInstallments),
             Convert.ToString(c.Mobile),
-            Convert.ToString(c.GuarantorName),
-             Convert.ToString(c.GuarantorMobile),           
-             Convert.ToString(c.LoanAdvance),
-              Convert.ToString(c.InstallmentAmount),
-                 Convert.ToString(c.TotalInstallments),
-                 Convert.ToString(c.Make),
-                  Convert.ToString(c.YearId),
-                    Convert.ToString(c.Status),
+           
+            Convert.ToString(db.FinancialYears.Find(c.YearId).StartDate),
+             Convert.ToString(c.Id)
+
         };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
@@ -79,13 +84,23 @@ namespace AccountManager.Controllers
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             try
             {
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files["ImageData"];
+                    ObjAccountHolders.CustomerPhoto = ConvertToBytes(file);
+                }
                 if (ModelState.IsValid)
                 {
+                    ObjAccountHolders.IsActive = true;
                     db.AccountHolders.Add(ObjAccountHolders);
-                    db.SaveChanges();
-
+                    int i=db.SaveChanges();
+                    if (i == 1)
+                    {
+                        return RedirectToAction("Index");
+                    }
                     sb.Append("Sumitted");
                     return Content(sb.ToString());
+                   
                 }
                 else
                 {
@@ -187,14 +202,11 @@ namespace AccountManager.Controllers
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             try
             {
-
                 AccountHolders ObjAccountHolders = db.AccountHolders.Find(id);
                 db.AccountHolders.Remove(ObjAccountHolders);
                 db.SaveChanges();
-
                 sb.Append("Sumitted");
                 return Content(sb.ToString());
-
             }
             catch (Exception ex)
             {
@@ -208,20 +220,25 @@ namespace AccountManager.Controllers
         public ActionResult MultiViewIndex(int? id)
         {
             AccountHolders ObjAccountHolders = db.AccountHolders.Find(id);
-            ViewBag.IsWorking = 0;
-            if (id > 0)
+            byte[] cover = GetImageFromDataBase(id.GetValueOrDefault());
+            if (cover != null)
             {
-                ViewBag.IsWorking = id;
-                ViewBag.AccountId = 1;
-
+                ObjAccountHolders.CustomerPhoto = cover;
             }
-
+            else
+            {
+                ObjAccountHolders.CustomerPhoto = null;
+            }       
+            
+            ViewBag.IsWorking = 1;
+            ViewBag.AccountId = 1;
+            ObjAccountHolders.CreatedDate = DateTime.Now.ToString();
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjAccountHolders.YearId);
             return View(ObjAccountHolders);
         }
 
         // POST: /Customers/MultiViewIndex/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
@@ -232,11 +249,11 @@ namespace AccountManager.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
-
+                    HttpPostedFileBase file = Request.Files["ImageData"];                     
+                    ObjAccountHolders.CustomerPhoto = ConvertToBytes(file); 
                     db.Entry(ObjAccountHolders).State = EntityState.Modified;
                     db.SaveChanges();
-
+                 
                     sb.Append("Sumitted");
                     return Content(sb.ToString());
                 }
@@ -260,9 +277,44 @@ namespace AccountManager.Controllers
 
         }
 
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
+
+       
+        // GET Customers/getallAccountholders
+        public ActionResult getallAccountholders()
+        {
+            return Json(db.AccountHolders.Select(x => new
+            {
+                Text = x.Id,
+                Value = x.Name
+            }).ToList(), JsonRequestBehavior.AllowGet);
+        }
         private SIContext db = new SIContext();
-
-
+        public byte[] GetImageFromDataBase(int Id)
+        {
+            var q = from temp in db.AccountHolders where temp.Id == Id select temp.CustomerPhoto;
+            byte[] cover = q.First();
+            return cover;
+        }
+        // GET Customers/RetrieveImage
+        public ActionResult RetrieveImage(int id)
+        {
+            byte[] cover = GetImageFromDataBase(id);
+            if (cover != null)
+            {
+                return File(cover, "image/jpg");
+            }
+            else
+            {
+                return null;
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

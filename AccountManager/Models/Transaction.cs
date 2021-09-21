@@ -12,8 +12,11 @@ namespace AccountManager.Models
         
         public int Id { get; set; }
         [Required(ErrorMessage = "Select Date")]
-        [DisplayName("Date")]       
-        public DateTime TransactionDate { get; set; }
+        [DisplayName("Date")]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format.")]
+        public string TransactionDate { get; set; }
         [StringLength(50)] 
         [DisplayName("Particulars")]
         [Required(ErrorMessage = "Enter Particulars")]

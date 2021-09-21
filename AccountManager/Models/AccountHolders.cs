@@ -54,10 +54,12 @@ namespace AccountManager.Models
         public string InsuranceUpto { get; set; }
         [DisplayName("Due Date")]
         [StringLength(10, MinimumLength = 1)]
-        public string DueDate { get; set; } //ends here all
-      
-        [StringLength(200, MinimumLength = 1)]
-        public string Email { get; set; }
+        [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format due date")]
+        public string DueDate { get; set; }
+        [DisplayName("Loan Advance Date")]
+        [StringLength(10, MinimumLength = 1)]
+        [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format for loan advance.")]
+        public string LoanAdvanceDate { get; set; }
         public bool IsActive { get; set; }
         public int CompanyId { get; set; }
         public int AccountId { get; set; }
@@ -67,7 +69,7 @@ namespace AccountManager.Models
         [Required(ErrorMessage = "Select Year")]
         public int YearId { get; set; }
         
-        [DisplayName("Installments")]
+        [DisplayName("Installment No")]
         [Required(ErrorMessage = "Enter Installments")]
         [Range(0, 1000)]
         public int TotalInstallments { get; set; }

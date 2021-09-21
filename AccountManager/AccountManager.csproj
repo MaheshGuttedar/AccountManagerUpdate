@@ -186,7 +186,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AccountHoldersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
@@ -1384,11 +1383,6 @@
     <Content Include="Views\Layout\DTMultiViewOtherCssJs.cshtml" />
     <Content Include="Views\Layout\FooterCssJs.cshtml" />
     <Content Include="Views\Layout\HeaderCssJs.cshtml" />
-    <Content Include="Views\AccountHolders\Create.cshtml" />
-    <Content Include="Views\AccountHolders\Delete.cshtml" />
-    <Content Include="Views\AccountHolders\Details.cshtml" />
-    <Content Include="Views\AccountHolders\Edit.cshtml" />
-    <Content Include="Views\AccountHolders\Index.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Customers\Delete.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />

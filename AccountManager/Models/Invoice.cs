@@ -12,9 +12,13 @@ namespace AccountManager.Models
         [DisplayName("S.No")] 
         public int Id { get; set; }
         [Required]
-        [DisplayName("Bill Date")] 
+        [DisplayName("Bill Date")]
+        [DataType(DataType.Date)]
+        [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format for billdate")]
         public DateTime BillDate { get; set; }
-        [DisplayName("Due Date")] 
+        [DisplayName("Due Date")]
+        [DataType(DataType.Date)]
+        [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format for duedate")]
         public Nullable<DateTime> DueDate { get; set; }
         [Required]
         [DisplayName("Payment Status")] 
