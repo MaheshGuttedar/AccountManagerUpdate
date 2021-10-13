@@ -1,65 +1,84 @@
 ﻿@model AccountManager.Models.AccountHolders
 
+ 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Are you sure you want to delete";
+    if (Ajax.IsThisAjaxRequest())
+    {
+        Layout = null;
+    }
 }
 
-<h2>Delete</h2>
+@Html.StarkAjaxFormSubmiter("frmInvoice", "tbInvoice", true, "Action Successfully Executed")
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>AccountHolders</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+@{
+    if (!Ajax.IsThisAjaxRequest())
+    {
+        <section class="content-header">
+            <h1>
+                @ViewBag.Title
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CompanyId)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+            </h1>
+        </section>
     }
-</div>
+}
+
+
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="box box-solid box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Account Holders</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+
+                    <div class="widget-sec">
+                        <div class="streaming-table">
+
+                            <table class="table table-striped table-bordered">
+
+                                <tr>
+                                    <td>Payment Date</td>
+                                    <td>@Html.DisplayFor(model => model.Name)</td>
+                                </tr>
+                                <tr>
+                                    <td>Installment Date</td>
+                                    <td>@Html.DisplayFor(model => model.AccountNoFromRegister)</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Transaction ID</td>
+                                    <td>@Html.DisplayFor(model => model.Address)</td>
+                                </tr>
+                                <tr>
+                                    <td>Account ID</td>
+                                    <td>@Html.DisplayFor(model => model.EngineNo)</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Installment No</td>
+                                    <td>@Html.DisplayFor(model => model.LoanAdvance)</td>
+                                </tr>
+                            </table>
+                            <div class="box-footer">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                                        @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

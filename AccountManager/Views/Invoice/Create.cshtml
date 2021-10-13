@@ -9,7 +9,9 @@
 }
  
 <script src="~/Content/ckeditor/ckeditor.js"></script>
-
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+</head>
 @Html.StarkAjaxFormSubmiter("frmInvoice", "tbInvoice", true, "Action Successfully Executed")
  
 @{
@@ -37,7 +39,7 @@
                         <h3 class="box-title">Generate Invoice </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <div role="form">
+                    <div role="form" style="height: 320px;">
                         <div class="box-body">
                             <div class=" ">
                                 <div class="col-md-6">
@@ -45,16 +47,28 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.YearId, new { @class = "" })
-                                                @Html.DropDownList("YearId", " -Select- ")
+                                                @*@Html.DropDownList("YearId", "-Select-")*@
+                                                @Html.TextBox("Year", (object)ViewBag.Year)
+                                                @Html.Hidden("YearId", (object)ViewBag.YearId)
+
                                             </div>
                                             <div class="form-group">
-                                                @Html.LabelFor(model => model.OtherInvoiceCode, new { @class = "" })
-                                                @Html.EditorFor(model => model.OtherInvoiceCode)
+                                                @Html.LabelFor(model => model.InstallmentNo, new { @class = "" })
+                                                @Html.TextBox("InstallmentNo", (object)ViewBag.InstallmentNo)
+                                            </div>
+                                           
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.DueDate, new { @class = "" })                                                 
+                                                @Html.TextBox("DueDate", (object)ViewBag.DueDate)
+                                                @*<script type="text/javascript">$(function () { $("#DueDate").datepicker({ format: "dd/mm/yyyy" }) });</script>*@
                                             </div>
                                             <div class="form-group">
-                                                @Html.LabelFor(model => model.DueDate, new { @class = "" })
-                                                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "" } })
-                                                <script>$(function () { $("#DueDate").datepicker({ dateFormat: 'dd/mm/yyyy'}); });</script>
+
+                                                @Html.Hidden("TransactionId", (object)ViewBag.TransactionId)
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.StarkInputButtion("Generate Invoice", "submit", "btn btn-primary", "")
+                                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
                                             </div>
                                         </div>
                                     </div>
@@ -65,13 +79,16 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.AccountHolderId, new { @class = "" })
-                                                @Html.DropDownList("AccountHolderId", " -Select- ")
+                                                @*@Html.DropDownList("AccountHolderId", " -Select- ")*@
+                                                @Html.TextBox("AccountHolderName", (object)ViewBag.AccountHolderName)
+                                                @Html.Hidden("AccountHolderId", (object)ViewBag.AccountHolderId)
                                             </div>
 
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.BillDate, new { @class = "" })
                                                 @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "" } })
-                                                <script>$(function () { $("#BillDate").datepicker({ dateFormat: 'dd/mm/yyyy'}); });</script>
+
+                                                <script type="text/javascript">$(function () { $("#BillDate").datepicker({ format: "dd/mm/yyyy" }) });</script>
                                             </div>
 
                                             <div class="form-group">
@@ -79,7 +96,10 @@
                                                 @Html.DropDownList("Status", " -Select- ")
                                                 @*@Html.StarkDropDownAjaxLink("/PaymentStatus/Create", "AddMore", "")*@
                                             </div>
-
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.OtherInvoiceCode, new { @class = "" })
+                                                @Html.EditorFor(model => model.OtherInvoiceCode)
+                                            </div>
 
                                         </div>
                                     </div>
@@ -89,8 +109,7 @@
 
                         </div>
                         <div class="box-footer">
-                            @Html.StarkInputButtion("Generate Invoice", "submit","btn btn-primary","") 
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                            <span></span>
                         </div>
                     </div>
                 </div>
@@ -102,13 +121,32 @@
 
 
 <style>
-    #DueDate{
-        width:100%;
+    #DueDate {
+        width: 295px;
+        background-color: #e8ebee !important;
     }
-    #BillDate {
+    #InstallmentNo {
+        width: 295px;
+        height: 34px;
+        background-color: #e8ebee !important;
+    }
+    #BillDate, #OtherInvoiceCode {
         width: 295px;
     }
-    #Status, #YearId, #AccountHolderId {
+    #Year, #AccountHolderName {
+        width: 295px;
+        background-color: #e8ebee !important;
+    }
+    #Status {
         width: 295px;
     }
+
+   
+    
 </style>
+<script>
+    $("#AccountHolderId").attr("readonly", "true").addClass("");
+    $("#YearId").attr("readonly", "true");
+    $("#InstallmentNo").attr("readonly", "true");
+    
+</script>

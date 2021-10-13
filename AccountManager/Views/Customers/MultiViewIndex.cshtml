@@ -6,7 +6,9 @@
 
 <script src="~/Content/DataTable/new/jquery.dataTables.min.js"></script>
 <link href="~/Content/DataTable/new/jquery.dataTables.min.css" rel="stylesheet" />
-
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+</head>
 @section ScriptsOrCss
 {
     <script src="~/Content/ckeditor/ckeditor.js"></script>
@@ -163,7 +165,7 @@
                                         <div class="col-md-4">
                                             @Html.LabelFor(model => model.LoanAdvanceDate, new { @class = "" })
                                             @Html.EditorFor(model => model.LoanAdvanceDate, new { htmlAttributes = new { style = "width: 120px" } })
-                                            <script>$(function () { $("#LoanAdvanceDate").datepicker(); });</script>
+                                            <script type="text/javascript">$(function () { $("#LoanAdvanceDate").datepicker({ format: "dd/mm/yyyy" }) });</script>
                                         </div>
                                     </div>
 
@@ -224,8 +226,8 @@
                                     @Html.EditorFor(model => model.InsuranceUpto)
 
                                     @Html.LabelFor(model => model.DueDate, new { @class = "" })
-                                    @Html.EditorFor(model => model.DueDate)
-                                    <script>$(function () { $("#DueDate").datepicker(); });</script>
+                                    @Html.EditorFor(model => model.DueDate)                                
+                                    <script type="text/javascript">$(function () { $("#DueDate").datepicker({ format: "dd/mm/yyyy" }) });</script>
 
 
 

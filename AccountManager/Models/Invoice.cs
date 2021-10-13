@@ -12,14 +12,15 @@ namespace AccountManager.Models
         [DisplayName("S.No")] 
         public int Id { get; set; }
         [Required]
-        [DisplayName("Bill Date")]
-        [DataType(DataType.Date)]
+        [DisplayName("Payment Date")]
+        //[DataType(DataType.Date)]
         [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format for billdate")]
-        public DateTime BillDate { get; set; }
-        [DisplayName("Due Date")]
-        [DataType(DataType.Date)]
+       
+        public string BillDate { get; set; }
+        [DisplayName("Installment Date")]
+        //[DataType(DataType.Date)]
         [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format for duedate")]
-        public Nullable<DateTime> DueDate { get; set; }
+        public string DueDate { get; set; }
         [Required]
         [DisplayName("Payment Status")] 
         public int? Status { get; set; }
@@ -43,12 +44,19 @@ namespace AccountManager.Models
         public virtual ICollection<InvoiceTransaction> InvoiceTransaction_InvoiceIds { get; set; }
         public virtual ICollection<InvoiceItem> InvoiceItem_InvoiceIds { get; set; }
 
-        [DisplayName("Select Account Holder")]
-        [Required(ErrorMessage = "Select Account Holder")]
+        [DisplayName("Account Holder")]
+        [Required(ErrorMessage = "Account Holder")]
         public int AccountHolderId { get; set; }
-        [DisplayName("Select Year ")]
-        [Required(ErrorMessage = "Select Year")]
+        [DisplayName("Year ")]
+        [Required(ErrorMessage = "Year")]
         public int YearId { get; set; }
+        [DisplayName("Installment No")]
+        [Required(ErrorMessage = "Installment No")]
+        public int InstallmentNo { get; set; }
+
+        
+        public decimal TransactionId { get; set; }
+        
 
     }
 }

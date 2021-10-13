@@ -7,7 +7,9 @@
         Layout = null;
     }
 }
- 
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js">    </script>
+</head>
 <script src="~/Content/ckeditor/ckeditor.js"></script>
 
 @Html.StarkAjaxFormSubmiter("frmTransaction", "tbTransaction", true, "Action Successfully Executed")
@@ -50,7 +52,7 @@
                             <div class=" ">
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-10">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.YearId, new { @class = "" })
                                                 @Html.DropDownList("YearId", " -Select- ")
@@ -59,7 +61,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TransactionDate, new { @class = "" })
                                                 @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "" } })
-                                                <script>$(function () { $("#TransactionDate").datepicker(); });</script>
+                                                <script type="text/javascript">$(function () { $("#TransactionDate").datepicker({ format: "dd/mm/yyyy" }) });</script>
                                             </div>
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Title, new { @class = "" })
@@ -75,6 +77,14 @@
                                                 @Html.LabelFor(model => model.BalanceAmount, new { @class = "" })
                                                 @Html.EditorFor(model => model.BalanceAmount)
                                             </div>
+                                            @if (Convert.ToInt32( ViewBag.OverDueDays) > 0)
+                                            {
+                                                <div class="form-group" id="OverDueDaysId">
+                                                    @Html.LabelFor(model => model.OverDueDays, new { @class = "" })
+                                                    @Html.TextBox("OverDueDays", (object)ViewBag.OverDueDays)
+                                                </div>
+                                            }
+
 
                                         </div>
                                     </div>
@@ -90,7 +100,8 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.InstallmentNo, new { @class = "" })
                                                 <br />
-                                                @Html.EditorFor(model => model.InstallmentNo)
+
+                                                @Html.TextBox("InstallmentNo", (object)ViewBag.InstallmentNo)
                                             </div>
 
                                             <div class="form-group">
@@ -102,9 +113,18 @@
                                                 @Html.LabelFor(model => model.CreditAmount, new { @class = "" })
                                                 @Html.EditorFor(model => model.CreditAmount)
                                             </div>
+
+                                            @if (Convert.ToInt32(ViewBag.OverDueDays) > 0)
+                                            {
+                                                <div class="form-group" id="OverDueAmountId">
+                                                    @Html.LabelFor(model => model.OverDueAmount, new { @class = "" })
+                                                    @Html.TextBox("OverDueAmount", (object)ViewBag.OverDueAmount)
+                                                </div>
+                                            }
                                             <div class="box-footer">
                                                 @Html.StarkInputButtion("Save Ledger Entry", "submit", "btn btn-primary", "")
                                                 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+
                                             </div>
 
                                         </div>
@@ -185,10 +205,7 @@
                             var buttons = '<div class="text-center"> <div class="btn-group text-left"> <button type="button" class="btn btn-default btn-xs btn-warning dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>';
                             buttons += '<ul class="dropdown-menu pull-left" role="menu">';
                             buttons += '<li><a href="' + ControlerNameTransaction + "/MultiViewIndex/" + row[0] + '"><i class="fa fa-edit"></i> Edit</a></li>';
-
-                            buttons += '<li><a href="' + ControlerNameTransaction + "/Details/" + row[0] + '" data-ajax-update="#SkDetails" data-ajax-success="openModalDialog(\'SkDetails\', \'Details\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDetails\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDetails\')" data-ajax="true"><i class="fa fa-info-circle"></i>Quick Details</a></li>';
                             buttons += '<li><a href="' + ControlerNameTransaction + "/Delete/" + row[0] + '" data-ajax-update="#SkDelete" data-ajax-success="openModalDialog(\'SkDelete\', \'Delete\')" data-ajax-mode="replace" data-ajax-method="GET" data-ajax-failure="clearModalDialog(\'SkDelete\');alert(\'Ajax call failed\')" data-ajax-begin="prepareModalDialog(\'SkDelete\')" data-ajax="true"><i class="fa fa-trash-o"></i> Delete</a></a></li>';
-
                             buttons += '</ul>';
                             buttons += '</div></div>';
                             return buttons;
@@ -218,7 +235,35 @@
          width: 100%;
          height: 34px;
      }
+     #InstallmentNo {
+         width: 100%;
+         height: 34px;
+         background-color: #e8ebee !important;
+     }
      .sol-inner-container {
          border: 2px solid red;
+         display:none;
+     }
+     .sol-selected-display-item {
+         width: 378px;
+     }
+     #OverDueDays {
+         background-color: #e8ebee !important;
+     }
+     .hidediv{
+
      }
  </style>
+<script type="text/javascript">
+    $("#OverDueDays").attr("readonly", "true");
+    $("#InstallmentNo").attr("readonly", "true");
+
+
+    if ($("#OverDueDays").val() <= 0) {
+        $("#OverDueDaysId").addClass("hidediv");
+        $("#OverDueAmount").addClass("hidediv");
+    } else {
+        $("#OverDueDaysId").removeClass("hidediv");
+        $("#OverDueAmount").removeClass("hidediv");
+    }
+</script>

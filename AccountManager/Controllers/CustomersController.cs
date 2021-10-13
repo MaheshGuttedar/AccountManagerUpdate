@@ -30,16 +30,14 @@ namespace AccountManager.Controllers
             Convert.ToString(c.Name),
             Convert.ToString(c.AccountNoFromRegister),
             Convert.ToString(c.InstallmentAmount + " * "+Convert.ToString(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id)))),
-            Convert.ToString(c.InstallmentAmount*Convert.ToInt64(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id)))),
-           
+            Convert.ToString(c.InstallmentAmount*Convert.ToInt64(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id)))),           
             Convert.ToString(Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id))),//completed inst
             Convert.ToString(c.TotalInstallments - Convert.ToInt16(db.Transactions.Count(m=>m.AccountHolderId==c.Id))),//pending inst
-             Convert.ToString(c.Make),
-             Convert.ToString(c.TotalInstallments),
-            Convert.ToString(c.Mobile),
-           
-            Convert.ToString(db.FinancialYears.Find(c.YearId).StartDate),
-             Convert.ToString(c.Id)
+            Convert.ToString(c.Make),
+            Convert.ToString(c.TotalInstallments),
+            Convert.ToString(c.Mobile),           
+            Convert.ToString(db.FinancialYears.Find(c.YearId).StartDate)
+             //Convert.ToString(c.Id)
 
         };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
@@ -67,9 +65,7 @@ namespace AccountManager.Controllers
         public ActionResult Create()
         {
             ViewBag.AccountId = 1;
-            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");
-            
-
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");          
             return View();
         }
 

@@ -17,7 +17,7 @@
         <section class="content-header">
             <h1>
                 @ViewBag.Title
-                <small>@ViewBag.Title</small>
+                 
             </h1>
         </section>
     }
@@ -39,39 +39,28 @@
                             <table class="table table-striped table-bordered">
 
                                 <tr>
-                                    <td>BillDate</td>
+                                    <td>Payment Date</td>
                                     <td>@Html.DisplayFor(model => model.BillDate)</td>
                                 </tr>
                                 <tr>
-                                    <td>DueDate</td>
+                                    <td>Installment Date</td>
                                     <td>@Html.DisplayFor(model => model.DueDate)</td>
                                 </tr>
+
+
                                 <tr>
-                                    <td>Status</td>
-                                    <td>@Html.DisplayFor(model => model.Status)</td>
-                                </tr>
-                                <tr>
-                                    <td>LastEmailed</td>
-                                    <td>@Html.DisplayFor(model => model.LastEmailed)</td>
-                                </tr>
-                                <tr>
-                                    <td>OtherInvoiceCode</td>
+                                    <td>Transaction ID</td>
                                     <td>@Html.DisplayFor(model => model.OtherInvoiceCode)</td>
                                 </tr>
                                 <tr>
-                                    <td>ClientId</td>
-                                    <td>@Html.DisplayFor(model => model.ClientId)</td>
-                                </tr>
-                                <tr>
-                                    <td>CreatedBy</td>
-                                    <td>@Html.DisplayFor(model => model.CreatedBy)</td>
-                                </tr>
-                                <tr>
-                                    <td>OfficeId</td>
-                                    <td>@Html.DisplayFor(model => model.OfficeId)</td>
+                                    <td>Account ID</td>
+                                    <td>@Html.DisplayFor(model => model.AccountHolderId)</td>
                                 </tr>
 
-
+                                <tr>
+                                    <td>Installment No</td>
+                                    <td>@Html.DisplayFor(model => model.InstallmentNo)</td>
+                                </tr>
                             </table>
                             <div class="box-footer">
 

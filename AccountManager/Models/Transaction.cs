@@ -12,7 +12,7 @@ namespace AccountManager.Models
         
         public int Id { get; set; }
         [Required(ErrorMessage = "Select Date")]
-        [DisplayName("Date")]
+        [DisplayName("Installment Date")]
         //[DataType(DataType.Date)]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format.")]
@@ -36,12 +36,16 @@ namespace AccountManager.Models
         [DisplayName("Balance Amount ")]
         [Required(ErrorMessage = "Enter Balance Amt")]
         public decimal BalanceAmount { get; set; }
-        [DisplayName("Select Account Holder")]
-        [Required(ErrorMessage = "Select Account Holder")]
+        [DisplayName("Account Holder")]
+        [Required(ErrorMessage = "Account Holder")]
         public int AccountHolderId { get; set; }
-        [DisplayName("Select Year ")]
-        [Required(ErrorMessage = "Select Year")]
+        [DisplayName("Year ")]
+        [Required(ErrorMessage = "Year")]
         public int YearId { get; set; }
+        [DisplayName("OverDue Days")]
+        public int OverDueDays { get; set; }
+        [DisplayName("OverDue Amount ")]
+        public decimal OverDueAmount { get; set; }
 
 
 
@@ -49,7 +53,7 @@ namespace AccountManager.Models
 
 
 
-       public virtual ICollection<InvoiceTransaction> InvoiceTransaction_TransactionIds { get; set; }   
+        public virtual ICollection<InvoiceTransaction> InvoiceTransaction_TransactionIds { get; set; }   
         public string Status { get; set; }
         public bool IsActive { get; set; }
         public int? PaymentStatusId { get; set; }

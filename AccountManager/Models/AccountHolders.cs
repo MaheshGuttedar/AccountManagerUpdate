@@ -59,6 +59,7 @@ namespace AccountManager.Models
         [DisplayName("Loan Advance Date")]
         [StringLength(10, MinimumLength = 1)]
         [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format for loan advance.")]
+        [Required(ErrorMessage = "Enter Loan Advance Date")]
         public string LoanAdvanceDate { get; set; }
         public bool IsActive { get; set; }
         public int CompanyId { get; set; }

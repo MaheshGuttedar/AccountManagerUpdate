@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using AccountManager.Models;
+using System.Globalization;
 
 namespace AccountManager.Controllers
 {
@@ -18,33 +19,34 @@ namespace AccountManager.Controllers
         {
             return View();
         }
-        
+
         // GET Transaction/GetGrid
+        [HttpGet]
         public ActionResult GetGrid()
         {
            
             int srlno = 1;
-            string link = "/Invoice/Create/";
+            string link = "/Invoice/Create?";
             var tak = db.Transactions.ToArray();
             var result = from c in tak select new string[] { 
-                c.Id.ToString(),
-                 Convert.ToString(srlno++),
-                 Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
-                  Convert.ToString(c.InstallmentNo),
+            c.Id.ToString(),
+            Convert.ToString(srlno++),
+              Convert.ToString(db.AccountHolders.Find(c.AccountHolderId).AccountNoFromRegister),
+            Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
+            Convert.ToString(c.InstallmentNo),
             Convert.ToString(c.Title),
-              Convert.ToString(c.HireCharge),
-               Convert.ToString(c.DebitAmount),
-                Convert.ToString(c.BalanceAmount-c.CreditAmount),
-                Convert.ToString(c.CreditAmount),
-               
-                    Convert.ToString(c.BalanceAmount),
-                   string.IsNullOrEmpty(Convert.ToString(c.PaymentStatusId)) ==true ? "<a href='"+link+c.Id.ToString()+"' >Generate Invoice </a>" :"Paid"
-            
-
-
-
+            Convert.ToString(c.HireCharge),
+            Convert.ToString(c.DebitAmount),
+            Convert.ToString(c.BalanceAmount-c.CreditAmount),
+            Convert.ToString(c.CreditAmount),
+            Convert.ToString(c.BalanceAmount),
+            Convert.ToString(c.OverDueDays),
+            Convert.ToString(c.OverDueAmount),
+            Convert.ToString(db.FinancialYears.Find(c.YearId).StartDate),
+            Convert.ToInt32(c.PaymentStatusId) ==0 ? "<a href='"+link+"id="+c.Id.ToString()+ "' >Generate Invoice </a>" :"Paid"
             };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
+
         }
         // GET: /Transaction/ModelBindIndex
         public ActionResult ModelBindIndex()
@@ -65,11 +67,33 @@ namespace AccountManager.Controllers
             }
             return View(ObjTransaction);
         }
-        // GET: /Transaction/Create
-        public ActionResult Create()
+
+        public static int getdays(int year, int month)
         {
-            ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name");
-            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate");
+            int days = DateTime.DaysInMonth(year, month);
+
+            return days;
+        }
+
+        // GET: /Transaction/Create
+        public ActionResult Create(int? AccountId)
+        {
+
+            Transaction Objtransaction = new Transaction();
+            AccountHolders ObjAccountHolders = db.AccountHolders.Find(AccountId);            
+            ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjAccountHolders.YearId);
+            ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjAccountHolders.Id);
+            int InstallmentNo = (from a in db.AccountHolders join t in db.Transactions on a.Id equals t.AccountHolderId where a.Id==AccountId select a.AccountId).Count();
+            ViewBag.InstallmentNo = InstallmentNo + 1;
+            ViewBag.LoanAdvanceDate = ObjAccountHolders.LoanAdvanceDate;
+            //DateTime.Today.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)
+            //DateTime DtLoanAdvanceDate = DateTime.Parse(ObjAccountHolders.LoanAdvanceDate);
+            string strLoanAdvanceDate = ObjAccountHolders.LoanAdvanceDate;
+            DateTime dtLoanAdvanceDate = Convert.ToDateTime(strLoanAdvanceDate,System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
+            DateTime todayDate = DateTime.Today;         
+            TimeSpan difference = todayDate - dtLoanAdvanceDate;            
+            int OverDueDays =Convert.ToInt32(difference.TotalDays) - getdays(dtLoanAdvanceDate.Year, dtLoanAdvanceDate.Month);
+            ViewBag.OverDueDays = OverDueDays;
             return View();
         }
 
@@ -89,6 +113,7 @@ namespace AccountManager.Controllers
                 ObjTransaction.OfficeId = 1;
                 if (ModelState.IsValid)
                 {
+                    ObjTransaction.PaymentStatusId = 0;
                     db.Transactions.Add(ObjTransaction);
                     db.SaveChanges();
 
@@ -144,9 +169,9 @@ namespace AccountManager.Controllers
             try
             {
                 if (ModelState.IsValid)
-                { 
-                    
+                {
 
+                    ObjTransaction.PaymentStatusId = 0;
                     db.Entry(ObjTransaction).State = EntityState.Modified;
                     db.SaveChanges();
 
@@ -214,18 +239,26 @@ namespace AccountManager.Controllers
   
         }
         // GET: /Transaction/MultiViewIndex/5
-        public ActionResult MultiViewIndex(int? id)
+        public ActionResult MultiViewIndex(int? id,bool accountholder=false)
         { 
             Transaction ObjTransaction = db.Transactions.Find(id);
-            ViewBag.IsWorking = 0;
-            if (id > 0)
+            if (ObjTransaction != null && accountholder==false)
             {
-                ViewBag.IsWorking = id;
-                ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjTransaction.YearId);
-                ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjTransaction.AccountHolderId);
-
+                ViewBag.IsWorking = 0;
+                if (id > 0)
+                {
+                    ViewBag.IsWorking = id;
+                    ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjTransaction.YearId);
+                    ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjTransaction.AccountHolderId);
+                }
             }
-            
+            else if(accountholder)
+            {
+                AccountHolders ObjAccountHolders = db.AccountHolders.Find(id);
+                ViewBag.IsWorking = id;
+                ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjAccountHolders.YearId);
+                ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjAccountHolders.Id);
+            }              
             return View(ObjTransaction);
         }
 
@@ -278,67 +311,39 @@ namespace AccountManager.Controllers
                  };
             return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
         }
-        // GET: Transaction/GetAccountHolderNames/2010
-        public ActionResult GetLedgerEntryDetails(int AccountHolderId)
-        {
-            int srlno = 1;
-            //decimal DebitAmountTemp = 0;
-            var tak = db.Transactions.Where(x=>x.AccountHolderId == AccountHolderId).ToArray();
-            var result = from c in tak
-            select new string[] {
-            c.Id.ToString(),
-            Convert.ToString(srlno++),
-            Convert.ToString(Convert.ToDateTime( c.TransactionDate).ToShortDateString()),
-            Convert.ToString(c.InstallmentNo),
-            Convert.ToString(c.Title),
-            Convert.ToString(c.HireCharge),
-            Convert.ToString(c.DebitAmount),
-            Convert.ToString(c.BalanceAmount-c.CreditAmount),
-            Convert.ToString(c.CreditAmount),
-            Convert.ToString(c.BalanceAmount),
-            (Convert.ToString(c.PaymentStatusId) ==null || string.IsNullOrEmpty(Convert.ToString(c.PaymentStatusId)) ) ? "Generate Invoice" :"Paid"};
-            return Json(new { aaData = result }, JsonRequestBehavior.AllowGet);
-        }
-
-        // POST: /Transaction/Create
+      
+        // POST: /Transaction/NewEntry
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
         public ActionResult NewEntry(int id)
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            AccountHolders ObjAccountHolders = db.AccountHolders.Where(x=>x.Id==id).FirstOrDefault();
+            Transaction ObjTransaction = db.Transactions.Where(x => x.AccountHolderId == 10).FirstOrDefault();
             try
             {
-                Transaction ObjTransaction = new Transaction();
-                ObjTransaction.DateAdded = DateTime.Now;
-                ObjTransaction.AddedBy = int.Parse(Env.GetUserInfo("userid"));
-                ObjTransaction.OfficeId = 1;
-                if (ModelState.IsValid)
-                {
-                    db.Transactions.Add(ObjTransaction);
-                    db.SaveChanges();
-                    sb.Append("Sumitted");
-                    return Content(sb.ToString());
-                }
-                else
-                {
-                    foreach (var key in this.ViewData.ModelState.Keys)
-                    {
-                        foreach (var err in this.ViewData.ModelState[key].Errors)
-                        {
-                            sb.Append(err.ErrorMessage + "<br/>");
-                        }
-                    }
-                }
+
+
+                var tak = db.AccountHolders.Where(x => x.Id == id).ToArray();
+
+                // ObjTransaction.DateAdded = DateTime.Now;
+                // ObjTransaction.AddedBy = int.Parse(Env.GetUserInfo("userid"));
+                // ObjTransaction.OfficeId = 1;               
+
+
+                 ViewBag.YearId = new SelectList(db.FinancialYears, "Id", "StartDate", ObjAccountHolders.YearId);
+                 ViewBag.AccountHolderId = new SelectList(db.AccountHolders, "Id", "Name", ObjAccountHolders.Id);
+
+
             }
             catch (Exception ex)
             {
-                sb.Append("Error :" + ex.Message);
+              
             }
 
-            return Content(sb.ToString());
+            return View(ObjTransaction);
 
         }
         private SIContext db = new SIContext();
